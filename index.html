@@ -20,6 +20,7 @@
 <meta name="twitter:title" content="Erick Rafael Cônsolo — Engenheiro de Software Backend">
 <meta name="twitter:description" content="Sistemas distribuídos, event-driven e de alta disponibilidade no ecossistema .NET.">
 <meta name="twitter:image" content="https://econsolo.github.io/photo.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307090d'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' fill='%23c9a575' text-anchor='middle'%3EEC%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,1224 +43,1150 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
 <style>
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: #070708; }
-  ::selection { background: #54e0a3; color: #070708; }
-  @keyframes ec-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-  @keyframes ec-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes ec-marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-  @keyframes ec-beam { 0% { top: -12%; } 100% { top: 112%; } }
-  @keyframes ec-scan { 0% { top: -3%; opacity: 0; } 12% { opacity: 0.65; } 88% { opacity: 0.65; } 100% { top: 103%; opacity: 0; } }
-  @keyframes ec-flicker { 0% { opacity: 0.5; } 91% { opacity: 0.5; } 92% { opacity: 0.28; } 93.5% { opacity: 0.55; } 95% { opacity: 0.34; } 96% { opacity: 0.5; } 100% { opacity: 0.5; } }
-  @keyframes ec-aurora { 0% { transform: translate(0, 0) scale(1); } 33% { transform: translate(9vw, 6vh) scale(1.25); } 66% { transform: translate(-7vw, -4vh) scale(0.9); } 100% { transform: translate(0, 0) scale(1); } }
-  @keyframes ec-shock { from { transform: translate(-50%, -50%) scale(0.1); opacity: 0.8; } to { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
+  :root {
+    --bg: #07090d;
+    --fg: #eae8e2;
+    --muted: #969aa3;
+    --dim: #5c6068;
+    --accent: #c9a575;
+    --line: rgba(234, 232, 226, 0.12);
+    color-scheme: dark;
+  }
+  html, body { margin: 0; height: 100%; background: var(--bg); overflow: hidden; }
+  body { font-family: 'Archivo', sans-serif; color: var(--fg); -webkit-font-smoothing: antialiased; }
+  ::selection { background: #c9a575; color: #07090d; }
+  a { color: var(--fg); }
+  a:hover { color: var(--accent); }
   @keyframes ec-cue { 0% { transform: scaleY(0); transform-origin: top; } 45% { transform: scaleY(1); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+  @keyframes ec-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+  .hv-link:hover { color: var(--fg) !important; }
+  .hv-btn:hover { background: var(--accent) !important; color: #07090d !important; }
+  .hv-ghost:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+  .hv-mail:hover { border-color: var(--accent) !important; }
+  .hv-soc:hover { color: var(--fg) !important; border-color: var(--accent) !important; }
+  .hv-rail:hover .rail-label { color: var(--fg) !important; }
+
+  @media (max-width: 1499px) {
+    #rail .rail-label, #rail #rail-sub { display: none !important; }
+  }
+  @media (min-width: 901px) and (max-width: 1499px) {
+    .ch-content { padding-left: 110px !important; }
+    .ch-num { right: clamp(4px, 2vw, 40px) !important; }
+  }
+  @media (max-width: 900px) {
+    #rail { display: none !important; }
+    #nav-contact { display: none !important; }
+    .grid-perfil { grid-template-columns: 1fr !important; gap: 26px !important; }
+    .grid-perfil .photo-cell { order: -1; justify-self: start !important; }
+    .grid-job { grid-template-columns: 1fr !important; gap: 18px !important; }
+    .grid-stack { grid-template-columns: 1fr 1fr !important; gap: 22px 18px !important; }
+    .job-years-big { font-size: 15vw !important; }
+  }
+  @media (max-height: 700px) {
+    .ch-content { transform: scale(0.86); }
+  }
   @media print {
+    html, body { overflow: visible !important; height: auto !important; background: #fff !important; }
     @page { margin: 14mm; }
-    html, body { background: #fff !important; }
-    #ec-root { display: none !important; }
+    #app { display: none !important; }
     #print-cv { display: block !important; }
   }
 </style>
+<noscript>
 <style>
-/* hover states */
-  .hv-1:hover { color: #ededea; }
-  .hv-2:hover { color: #ededea; }
-  .hv-3:hover { color: #ededea; }
-  .hv-4:hover { color: #ededea; }
-  .hv-5:hover { border-color: var(--accent); }
-  .hv-6:hover { filter: brightness(1.15); }
-  .hv-7:hover { filter: brightness(1.15); }
-  .hv-8:hover { border-color: var(--accent); background: rgba(255,255,255,0.04); }
-  .hv-9:hover { filter: grayscale(0) contrast(1); }
-  .hv-10:hover { background: rgba(255,255,255,0.025); }
-  .hv-11:hover { background: rgba(255,255,255,0.025); }
-  .hv-12:hover { background: rgba(255,255,255,0.025); }
-  .hv-13:hover { background: rgba(255,255,255,0.025); }
-  .hv-14:hover { background: rgba(255,255,255,0.025); }
-  .hv-15:hover { border-color: var(--accent); }
-  .hv-16:hover { background: var(--accent); color: #070708; }
-  .hv-17:hover { border-color: var(--accent); background: rgba(255,255,255,0.03); }
-  .hv-18:hover { border-color: var(--accent); background: rgba(255,255,255,0.03); }
-  .hv-19:hover { border-color: var(--accent); background: rgba(255,255,255,0.03); }
+  html, body { overflow: auto !important; height: auto !important; }
+  section[data-step] { position: relative !important; visibility: visible !important; min-height: auto !important; padding: 60px 24px !important; }
+  [data-d] { opacity: 1 !important; }
+  #veil, #cursor-ring, #cursor-dot { display: none !important; }
 </style>
+</noscript>
 </head>
 <body>
-<div>
-<div id="ec-root" style="--accent: #54e0a3; position: relative; background: #070708; color: #ededea; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: clip; -webkit-font-smoothing: antialiased;">
+<div id="app">
 
-  <!-- particle field -->
-  <canvas id="pfield" style="position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+  <!-- WebGL universe -->
+  <div style="position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 120% 90% at 50% 10%, #0d121a 0%, #07090d 60%);"></div>
+  <div style="position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 60% 45% at 78% 30%, rgba(176,132,88,0.10) 0%, rgba(176,132,88,0) 70%), radial-gradient(ellipse 55% 40% at 18% 85%, rgba(120,150,190,0.07) 0%, rgba(120,150,190,0) 70%);"></div>
 
-  <!-- background grid -->
-  <div style="position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 82%); -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 82%);"></div>
+  <!-- vignette + grain -->
+  <div style="position: fixed; inset: 0; z-index: 40; pointer-events: none; background: radial-gradient(ellipse 115% 95% at 50% 45%, transparent 58%, rgba(2, 3, 5, 0.55) 100%);"></div>
+  <div style="position: fixed; inset: 0; z-index: 41; pointer-events: none; opacity: 0.05; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url%28%23n%29'/%3E%3C/svg%3E&quot;);"></div>
 
-  <!-- boot intro -->
-  <div id="boot" style="position: fixed; inset: 0; z-index: 200; background: #070708; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; opacity: 0; pointer-events: none;">
-    <div id="boot-name" style="font-family: 'JetBrains Mono', monospace; font-size: clamp(20px, 4.5vw, 44px); letter-spacing: 0.14em; color: #ededea;"></div>
-    <div style="width: min(320px, 60vw); height: 1px; background: rgba(255,255,255,0.12); overflow: hidden;"><div id="boot-bar" style="width: 0%; height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent);"></div></div>
-    <div id="boot-sub" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #6f6f68;"></div>
-  </div>
-
-  <!-- ghost year (work hover) -->
-  <div id="ghost-year" style="position: fixed; top: 0; left: 0; z-index: 2; pointer-events: none; font-family: 'Space Grotesk', sans-serif; font-weight: 300; font-size: clamp(120px, 18vw, 240px); line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--accent); opacity: 0; transition: opacity .3s; user-select: none; transform: translate(-100vw, 0);"></div>
-
-  <!-- matrix screensaver -->
-  <canvas id="mrain" style="position: fixed; inset: 0; width: 100%; height: 100%; z-index: 97; pointer-events: none; opacity: 0; transition: opacity 1.2s;"></canvas>
-
-  <!-- aurora -->
-  <div id="aurora" style="position: fixed; top: -10%; left: 8%; width: 46vw; height: 46vw; z-index: 0; pointer-events: none; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, transparent 65%); opacity: 0.10; filter: blur(70px); animation: ec-aurora 22s ease-in-out infinite;"></div>
-
-  <!-- mouse spotlight -->
-  <div id="spot" style="position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0;"></div>
-
-  <!-- progress bar -->
-  <div id="progress" style="position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 95; box-shadow: 0 0 12px var(--accent);"></div>
+  <!-- entrance veil -->
+  <div id="veil" style="position: fixed; inset: 0; z-index: 80; background: #07090d; pointer-events: none;"></div>
 
   <!-- NAV -->
-  <nav style="position: sticky; top: 0; z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px clamp(18px, 5vw, 64px); background: rgba(7,7,8,0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.08);">
-    <a href="#top" id="ec-logo" title="···" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #ededea;">
-      <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid var(--accent); font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 13px; letter-spacing: -0.5px; color: var(--accent);">EC</span>
-      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.5px; color: #9a9a92;">econsolo</span>
+  <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 60; display: flex; align-items: center; justify-content: space-between; padding: 18px clamp(20px, 4vw, 44px);">
+    <a href="#inicio" data-goto="0" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg);">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid var(--accent); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: var(--accent);">EC</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.5px; color: var(--muted);">econsolo</span>
     </a>
-    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: clamp(12px, 2.2vw, 30px); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.5px;">
-      <a href="#about" data-pt="sobre" style="color: #9a9a92; text-decoration: none; transition: color .2s;" class="hv-1">about</a>
-      <a href="#work" data-pt="trajetória" style="color: #9a9a92; text-decoration: none; transition: color .2s;" class="hv-2">work</a>
-      <a href="#skills" style="color: #9a9a92; text-decoration: none; transition: color .2s;" class="hv-3">skills</a>
-      <a href="#" data-print="true" style="color: #9a9a92; text-decoration: none; transition: color .2s;" class="hv-4">cv ↓</a>
-      <button id="langbtn" style="display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid rgba(255,255,255,0.15); padding: 6px 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #9a9a92; cursor: pointer; transition: border-color .2s;" class="hv-5">
-        <span id="lang-en" style="color: var(--accent);">EN</span><span style="color: #55554f;">/</span><span id="lang-pt" style="color: #6f6f68;">PT</span>
+    <div style="display: flex; align-items: center; gap: clamp(14px, 2.4vw, 28px);">
+      <button id="langbtn" style="display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--line); padding: 7px 11px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; color: var(--muted); cursor: pointer;">
+        <span id="lang-pt" style="color: var(--accent);">PT</span><span style="color: var(--dim);">/</span><span id="lang-en" style="color: var(--dim);">EN</span>
       </button>
-      <a href="#contact" data-mag="true" data-pt="contato" style="display: inline-flex; align-items: center; color: #070708; background: var(--accent); text-decoration: none; padding: 8px 16px; font-weight: 600; transition: filter .2s;" class="hv-6">contact</a>
+      <a href="#" data-print="true" data-en="CV ↓" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1px; color: var(--muted); text-decoration: none;" class="hv-link">CV ↓</a>
+      <a href="#contato" id="nav-contact" data-goto="9" data-mag="true" data-en="CONTACT" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; color: #07090d; background: var(--accent); padding: 9px 18px; text-decoration: none;" class="hv-btn">CONTATO</a>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header id="top" data-screen-label="Hero" style="position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: clamp(44px, 7vw, 90px) clamp(18px, 5vw, 64px) clamp(30px, 4vw, 56px);">
-    <div data-reveal="true" style="display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2.5px; color: var(--accent); text-transform: uppercase; margin-bottom: clamp(18px, 3vw, 30px);">
-      <span style="width: 30px; height: 1px; background: var(--accent); display: inline-block;"></span>
-      <span data-scramble="true" data-glitch="true" data-pt="Engenheiro de Software Backend">Backend Software Engineer</span>
-    </div>
-
-    <h1 id="kname" data-reveal="true" style="margin: 0; font-weight: 450; font-size: clamp(64px, 14.5vw, 196px); line-height: 0.88; letter-spacing: -0.045em; user-select: none;">
-      <span style="display: block; white-space: nowrap;"><span data-kin="true" style="display: inline-block;">E</span><span data-kin="true" style="display: inline-block;">R</span><span data-kin="true" style="display: inline-block;">I</span><span data-kin="true" style="display: inline-block;">C</span><span data-kin="true" style="display: inline-block;">K</span></span>
-      <span style="display: block; white-space: nowrap; color: transparent; -webkit-text-stroke: 1.5px #7a7a72;"><span data-kin="true" style="display: inline-block;">C</span><span data-kin="true" style="display: inline-block;">Ô</span><span data-kin="true" style="display: inline-block;">N</span><span data-kin="true" style="display: inline-block;">S</span><span data-kin="true" style="display: inline-block;">O</span><span data-kin="true" style="display: inline-block;">L</span><span data-kin="true" style="display: inline-block;">O</span></span>
-    </h1>
-
-    <div data-cols="1.5fr 1fr" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(28px, 5vw, 80px); align-items: center; margin-top: clamp(30px, 5vw, 60px);">
-      <div>
-        <p data-reveal="true" data-delay="120" data-lang-en="true" style="margin: 0; max-width: 500px; font-size: clamp(17px, 2vw, 21px); line-height: 1.55; color: #b6b6ae; text-wrap: pretty;">
-          I build backend systems that <span style="color: #ededea;">stay calm when traffic doesn't</span> — high-availability services and event-driven architectures across the <span style="color: var(--accent);">.NET</span> ecosystem.
-        </p>
-        <p data-lang-pt="true" style="display: none; margin: 0; max-width: 500px; font-size: clamp(17px, 2vw, 21px); line-height: 1.55; color: #b6b6ae; text-wrap: pretty;">
-          Construo sistemas backend que <span style="color: #ededea;">mantêm a calma quando o tráfego não mantém</span> — serviços de alta disponibilidade e arquiteturas event-driven no ecossistema <span style="color: var(--accent);">.NET</span>.
-        </p>
-        <div data-reveal="true" data-delay="220" style="display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #9a9a92;">
-          <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: var(--accent);"></span><span data-pt="Matão · São Paulo · Brasil">Matão · São Paulo · Brazil</span></span>
-          <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: #4caf50; animation: ec-blink 1.6s steps(1) infinite;"></span><span data-pt="Aberto a conexões">Open to connect</span></span>
-        </div>
-        <div data-reveal="true" data-delay="320" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px;">
-          <a href="#work" data-mag="true" data-pt="VER TRAJETÓRIA ↓" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; background: var(--accent); color: #070708; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 700; letter-spacing: 1px; transition: filter .2s;" class="hv-7">VIEW WORK ↓</a>
-          <a href="#" data-print="true" data-mag="true" data-pt="BAIXAR CV" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border: 1px solid rgba(255,255,255,0.2); color: #ededea; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 1px; transition: border-color .2s, background .2s;" class="hv-8">DOWNLOAD CV</a>
-        </div>
-      </div>
-
-      <div data-reveal="true" data-delay="200" style="justify-self: center; perspective: 900px;">
-        <div id="photo-wrap" style="position: relative; width: clamp(210px, 26vw, 300px); aspect-ratio: 4 / 5; transform-style: preserve-3d; transition: transform .18s ease-out;">
-          <div style="position: absolute; inset: -1px; border: 1px solid rgba(255,255,255,0.14); pointer-events: none; z-index: 3;"></div>
-          <div style="position: absolute; top: -1px; left: -1px; width: 18px; height: 18px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent); z-index: 4;"></div>
-          <div style="position: absolute; top: -1px; right: -1px; width: 18px; height: 18px; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); z-index: 4;"></div>
-          <div style="position: absolute; bottom: -1px; left: -1px; width: 18px; height: 18px; border-bottom: 1px solid var(--accent); border-left: 1px solid var(--accent); z-index: 4;"></div>
-          <div style="position: absolute; bottom: -1px; right: -1px; width: 18px; height: 18px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); z-index: 4;"></div>
-          <div style="position: absolute; inset: 0; overflow: hidden;">
-            <img src="photo.jpg" alt="Erick Cônsolo" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.06); transition: filter .5s;" class="hv-9">
-            <div style="position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); box-shadow: 0 0 12px var(--accent); pointer-events: none; animation: ec-scan 4.5s linear infinite;"></div>
-          </div>
-          <div style="position: absolute; bottom: 8px; left: 8px; z-index: 5; display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.5px; color: #ededea; background: rgba(7,7,8,0.55); padding: 4px 8px; backdrop-filter: blur(4px);">
-            <span style="width: 5px; height: 5px; border-radius: 50%; background: #4caf50; animation: ec-blink 1.6s steps(1) infinite;"></span>ONLINE
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: clamp(28px, 4vw, 48px);">
-      <span data-pt="ROLE" style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #55554f;">SCROLL</span>
-      <span style="width: 1px; height: 42px; background: var(--accent); display: block; animation: ec-cue 1.8s cubic-bezier(.65,0,.35,1) infinite;"></span>
-    </div>
-  </header>
-
-  <!-- MARQUEE -->
-  <div style="position: relative; z-index: 1; border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); overflow: hidden; padding: 15px 0; background: #0a0a0c;">
-    <div data-marquee="true" style="display: flex; align-items: center; gap: 44px; width: max-content; white-space: nowrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; animation: ec-marquee 26s linear infinite;">
-      <span style="color: #9a9a92;">DISTRIBUTED SYSTEMS</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">EVENT-DRIVEN</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">HIGH AVAILABILITY</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">.NET CORE</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">MICROSERVICES</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">CLOUD-NATIVE</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">MESSAGING</span><span style="color: var(--accent);">✦</span>
-      <span style="color: #9a9a92;">DISTRIBUTED SYSTEMS</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">EVENT-DRIVEN</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">HIGH AVAILABILITY</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">.NET CORE</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">MICROSERVICES</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">CLOUD-NATIVE</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">MESSAGING</span><span style="color: var(--accent);">✦</span>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <section id="about" data-screen-label="About" style="position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(18px, 5vw, 64px); scroll-margin-top: 72px;">
-    <div data-plx="0.1" style="position: absolute; top: 0; right: clamp(0px, 2vw, 40px); font-weight: 300; font-size: clamp(140px, 24vw, 300px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.055); pointer-events: none; user-select: none;">01</div>
-    <div data-cols="220px 1fr" style="display: grid; grid-template-columns: 220px 1fr; gap: clamp(24px, 5vw, 64px); position: relative;">
-      <div data-reveal="true" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #6f6f68;">
-        <div style="color: var(--accent); margin-bottom: 6px;">01</div>
-        <span data-scramble="true" data-glitch="true" data-pt="SOBRE">ABOUT</span>
-      </div>
-      <div>
-        <p data-reveal="true" data-lang-en="true" style="margin: 0; font-size: clamp(23px, 3vw, 36px); line-height: 1.38; letter-spacing: -0.01em; font-weight: 300; color: #d6d6cf; text-wrap: pretty;">
-          A decade shipping backend systems — from full-stack work in small, fast teams to distributed, event-driven services powering <span style="color: #ededea; font-weight: 500;">enterprise-scale e-commerce</span>. I care about reliability under peak load, clean architecture, and <span style="color: var(--accent); font-weight: 400;">code that outlives the sprint</span>.
-        </p>
-        <p data-lang-pt="true" style="display: none; margin: 0; font-size: clamp(23px, 3vw, 36px); line-height: 1.38; letter-spacing: -0.01em; font-weight: 300; color: #d6d6cf; text-wrap: pretty;">
-          Uma década construindo sistemas backend — do full-stack em times pequenos e rápidos a serviços distribuídos e event-driven por trás de <span style="color: #ededea; font-weight: 500;">e-commerce em escala enterprise</span>. Me importo com confiabilidade sob pico de carga, arquitetura limpa e <span style="color: var(--accent); font-weight: 400;">código que sobrevive à sprint</span>.
-        </p>
-        <div data-reveal="true" data-delay="140" style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 48px;">
-          <div><div style="font-size: clamp(34px, 4vw, 50px); font-weight: 600; letter-spacing: -0.03em; color: #ededea;"><span data-count="10">0</span>+</div><div data-pt="ANOS ENTREGANDO" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #87877f; letter-spacing: 0.5px; margin-top: 4px;">YEARS SHIPPING</div></div>
-          <div><div style="font-size: clamp(34px, 4vw, 50px); font-weight: 600; letter-spacing: -0.03em; color: #ededea;">.NET</div><div data-pt="ECOSSISTEMA CORE" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #87877f; letter-spacing: 0.5px; margin-top: 4px;">CORE ECOSYSTEM</div></div>
-          <div><div style="font-size: clamp(34px, 4vw, 50px); font-weight: 600; letter-spacing: -0.03em; color: #ededea;"><span data-count="5">0</span></div><div data-pt="EMPRESAS" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #87877f; letter-spacing: 0.5px; margin-top: 4px;">COMPANIES</div></div>
-          <div><div style="font-size: clamp(34px, 4vw, 50px); font-weight: 600; letter-spacing: -0.03em; color: #ededea;"><span data-count="2">0</span></div><div data-pt="IDIOMAS — PT / EN" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #87877f; letter-spacing: 0.5px; margin-top: 4px;">LANGUAGES — PT / EN</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section id="work" data-screen-label="Work" style="position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(18px, 5vw, 64px); scroll-margin-top: 72px; border-top: 1px solid rgba(255,255,255,0.07);">
-    <div data-plx="0.12" style="position: absolute; top: 0; right: clamp(0px, 2vw, 40px); font-weight: 300; font-size: clamp(140px, 24vw, 300px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.055); pointer-events: none; user-select: none;">02</div>
-    <div data-cols="220px 1fr" style="display: grid; grid-template-columns: 220px 1fr; gap: clamp(24px, 5vw, 64px); position: relative;">
-      <div data-reveal="true" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #6f6f68; align-self: start; position: sticky; top: 90px;">
-        <div style="color: var(--accent); margin-bottom: 6px;">02</div>
-        <span data-scramble="true" data-glitch="true" data-pt="EXPERIÊNCIA">EXPERIENCE</span>
-      </div>
-      <div style="display: flex; flex-direction: column;">
-
-        <div data-reveal="true" data-wipe="true" style="display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 30px 12px; border-top: 1px solid rgba(255,255,255,0.09); transition: background .3s;" class="hv-10">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #87877f; line-height: 1.7;">2022<br>—<br><span data-pt="AGORA" style="color: var(--accent);">NOW</span></div>
-          <div>
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;">
-              <h3 data-pt="Especialista de Sistemas" style="margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 600; letter-spacing: -0.02em;">System Specialist</h3>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #b6b6ae;">Casas Bahia Tecnologia</span>
-            </div>
-            <p data-pt="Serviços de alta disponibilidade para uma das maiores plataformas de e-commerce do Brasil — pedidos, pagamentos e integrações com parceiros — sobre arquiteturas distribuídas e event-driven, com mensageria, caching e observabilidade cloud-native prontas para picos de demanda." style="margin: 12px 0 0; font-size: 15.5px; line-height: 1.6; color: #9a9a92; max-width: 640px; text-wrap: pretty;">High-availability services for one of Brazil's largest e-commerce platforms — orders, payments and partner integrations — on distributed, event-driven architectures using messaging, caching and cloud-native observability built for peak demand.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #87877f;">
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">.NET</span>
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">Distributed Systems</span>
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">Messaging</span>
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">Observability</span>
-            </div>
-          </div>
-        </div>
-
-        <div data-reveal="true" data-wipe="true" style="display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 30px 12px; border-top: 1px solid rgba(255,255,255,0.09); transition: background .3s;" class="hv-11">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #87877f; line-height: 1.7;">2020<br>—<br>2022</div>
-          <div>
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;">
-              <h3 data-pt="Desenvolvedor Sênior" style="margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 600; letter-spacing: -0.02em;">Senior Software Developer</h3>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #b6b6ae;">5by5 · Soluções em Sistemas</span>
-            </div>
-            <p data-pt="Projetei e mantive APIs e microsserviços de alta disponibilidade em .NET Core para clientes enterprise — cloud-native, event-driven, orquestrados em containers, com testes automatizados e práticas de clean code." style="margin: 12px 0 0; font-size: 15.5px; line-height: 1.6; color: #9a9a92; max-width: 640px; text-wrap: pretty;">Designed and maintained high-availability APIs and microservices in .NET Core for enterprise clients — cloud-native, event-driven, container-orchestrated, with automated testing and clean-code practices.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #87877f;">
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">C# / .NET Core</span>
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">Kubernetes</span>
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">Redis</span>
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">gRPC</span>
-            </div>
-          </div>
-        </div>
-
-        <div data-reveal="true" data-wipe="true" style="display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 30px 12px; border-top: 1px solid rgba(255,255,255,0.09); transition: background .3s;" class="hv-12">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #87877f; line-height: 1.7;">2019<br>—<br>2020</div>
-          <div>
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;">
-              <h3 data-pt="Desenvolvedor de Software" style="margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 600; letter-spacing: -0.02em;">Software Developer</h3>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #b6b6ae;">5by5 · Soluções em Sistemas</span>
-            </div>
-            <p data-pt="Desenvolvimento backend de serviços escaláveis e distribuídos no ecossistema .NET Core, contribuindo com entregas ágeis para produtos enterprise." style="margin: 12px 0 0; font-size: 15.5px; line-height: 1.6; color: #9a9a92; max-width: 640px; text-wrap: pretty;">Backend development of scalable, distributed services within the .NET Core ecosystem, contributing to agile delivery for enterprise-level products.</p>
-          </div>
-        </div>
-
-        <div data-reveal="true" data-wipe="true" style="display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 30px 12px; border-top: 1px solid rgba(255,255,255,0.09); transition: background .3s;" class="hv-13">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #87877f; line-height: 1.7;">2015<br>—<br>2019</div>
-          <div>
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;">
-              <h3 data-pt="Desenvolvedor Full Stack" style="margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 600; letter-spacing: -0.02em;">Full Stack Developer</h3>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #b6b6ae;">Simples</span>
-            </div>
-            <p data-pt="Dono do ciclo completo de entrega em um time pequeno e veloz — do levantamento com stakeholders ao deploy e suporte em produção — com C#/.NET, Java, Node, Angular, Vue e Flutter." style="margin: 12px 0 0; font-size: 15.5px; line-height: 1.6; color: #9a9a92; max-width: 640px; text-wrap: pretty;">Owned the full delivery lifecycle in a small, fast-paced team — from requirements with stakeholders to deployment and production support — across C#/.NET, Java, Node, Angular, Vue and Flutter.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #87877f;">
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">Full Stack</span>
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">Java · Node</span>
-              <span style="padding: 4px 9px; border: 1px solid rgba(255,255,255,0.12);">Angular · Vue</span>
-            </div>
-          </div>
-        </div>
-
-        <div data-reveal="true" data-wipe="true" style="display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 30px 12px; border-top: 1px solid rgba(255,255,255,0.09); border-bottom: 1px solid rgba(255,255,255,0.09); transition: background .3s;" class="hv-14">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #87877f; line-height: 1.7;">2014<br>—<br>2015</div>
-          <div>
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;">
-              <h3 data-pt="Desenvolvedor C#" style="margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 600; letter-spacing: -0.02em;">C# Developer</h3>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #b6b6ae;">CAST</span>
-            </div>
-            <p data-pt="Selecionado para uma turma de 20 alunos em um programa intensivo de C# e fundamentos de software — POO, lógica e preparação prática de projetos." style="margin: 12px 0 0; font-size: 15.5px; line-height: 1.6; color: #9a9a92; max-width: 640px; text-wrap: pretty;">Selected for a 20-student cohort in an intensive C# and software-fundamentals program — OOP, software logic and hands-on project preparation.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS + EDUCATION -->
-  <section id="skills" data-screen-label="Skills" style="position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 120px) clamp(18px, 5vw, 64px); scroll-margin-top: 72px; border-top: 1px solid rgba(255,255,255,0.07);">
-    <div data-plx="0.1" style="position: absolute; top: 0; right: clamp(0px, 2vw, 40px); font-weight: 300; font-size: clamp(140px, 24vw, 300px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.055); pointer-events: none; user-select: none;">03</div>
-    <div data-cols="220px 1fr" style="display: grid; grid-template-columns: 220px 1fr; gap: clamp(24px, 5vw, 64px); position: relative;">
-      <div data-reveal="true" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #6f6f68;">
-        <div style="color: var(--accent); margin-bottom: 6px;">03</div>
-        <span data-scramble="true" data-glitch="true">SKILLS</span>
-      </div>
-      <div data-reveal="true" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 36px 28px;">
-        <div>
-          <div data-pt="LINGUAGENS" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.5px; color: #6f6f68; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.09);">LANGUAGES</div>
-          <div style="display: flex; flex-direction: column; gap: 9px; font-size: 15px; color: #cfcfc8;"><span>C# / .NET</span><span>Java</span><span>Python</span><span>Node.js</span><span>JavaScript</span></div>
-        </div>
-        <div>
-          <div data-pt="MENSAGERIA" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.5px; color: #6f6f68; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.09);">MESSAGING</div>
-          <div style="display: flex; flex-direction: column; gap: 9px; font-size: 15px; color: #cfcfc8;"><span>Azure Service Bus</span><span>RabbitMQ</span><span>Apache Kafka</span><span>Amazon SQS</span></div>
-        </div>
-        <div>
-          <div data-pt="DADOS" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.5px; color: #6f6f68; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.09);">DATA</div>
-          <div style="display: flex; flex-direction: column; gap: 9px; font-size: 15px; color: #cfcfc8;"><span>SQL Server</span><span>MongoDB</span><span>Cosmos DB</span><span>PostgreSQL</span><span>Redis</span></div>
-        </div>
-        <div>
-          <div data-pt="INFRA · PROTOCOLOS" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.5px; color: #6f6f68; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.09);">INFRA · PROTOCOLS</div>
-          <div style="display: flex; flex-direction: column; gap: 9px; font-size: 15px; color: #cfcfc8;"><span>Docker · Kubernetes</span><span>Azure · App Insights</span><span>REST · gRPC · SOAP</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div data-cols="220px 1fr" style="display: grid; grid-template-columns: 220px 1fr; gap: clamp(24px, 5vw, 64px); margin-top: clamp(50px, 7vw, 90px); position: relative;">
-      <div data-reveal="true" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #6f6f68;">
-        <div style="color: var(--accent); margin-bottom: 6px;">04</div>
-        <span data-scramble="true" data-glitch="true" data-pt="FORMAÇÃO">EDUCATION</span>
-      </div>
-      <div data-reveal="true" style="display: flex; flex-direction: column;">
-        <div style="display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.09);">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #87877f;">2014—2017</div>
-          <div>
-            <div data-pt="Tecnólogo — Análise e Desenvolvimento de Sistemas" style="font-size: 18px; font-weight: 500;">Technology Degree — Systems Analysis &amp; Software Development</div>
-            <div data-pt="FATEC — Faculdade de Tecnologia do Estado de São Paulo" style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #9a9a92; margin-top: 5px;">FATEC — São Paulo State College of Technology</div>
-          </div>
-        </div>
-        <div style="display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.09); border-bottom: 1px solid rgba(255,255,255,0.09);">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #87877f;">2010—2015</div>
-          <div>
-            <div data-pt="Programa Avançado de Língua Inglesa" style="font-size: 18px; font-weight: 500;">Advanced English Language Program</div>
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: #9a9a92; margin-top: 5px;">Wizard by Pearson</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE 2 (reversed) -->
-  <div style="position: relative; z-index: 1; border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); overflow: hidden; padding: 15px 0; background: #0a0a0c;">
-    <div data-marquee="true" style="display: flex; align-items: center; gap: 44px; width: max-content; white-space: nowrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; animation: ec-marquee-rev 30s linear infinite;">
-      <span style="color: #9a9a92;">KAFKA</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">RABBITMQ</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">KUBERNETES</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">AZURE</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">REDIS</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">SQL SERVER</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">MONGODB</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">gRPC</span><span style="color: var(--accent);">✦</span>
-      <span style="color: #9a9a92;">KAFKA</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">RABBITMQ</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">KUBERNETES</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">AZURE</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">REDIS</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">SQL SERVER</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">MONGODB</span><span style="color: var(--accent);">✦</span><span style="color: #9a9a92;">gRPC</span><span style="color: var(--accent);">✦</span>
-    </div>
-  </div>
-
-  <!-- CONTACT -->
-  <section id="contact" data-screen-label="Contact" style="position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: clamp(64px, 10vw, 150px) clamp(18px, 5vw, 64px) clamp(36px, 5vw, 64px); scroll-margin-top: 72px;">
-    <div data-plx="0.14" style="position: absolute; top: 0; right: clamp(0px, 2vw, 40px); font-weight: 300; font-size: clamp(140px, 24vw, 300px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.055); pointer-events: none; user-select: none;">05</div>
-    <div data-reveal="true" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; color: var(--accent); margin-bottom: 22px; position: relative;"><span data-scramble="true" data-glitch="true" data-pt="05 — CONTATO">05 — CONTACT</span></div>
-    <h2 data-reveal="true" data-lang-en="true" style="margin: 0; font-size: clamp(44px, 9vw, 120px); font-weight: 600; line-height: 0.92; letter-spacing: -0.04em; position: relative;">Let's build<br><span style="color: transparent; -webkit-text-stroke: 1.5px #7a7a72;">something solid.</span></h2>
-    <h2 data-lang-pt="true" style="display: none; margin: 0; font-size: clamp(44px, 9vw, 120px); font-weight: 600; line-height: 0.92; letter-spacing: -0.04em; position: relative;">Vamos construir<br><span style="color: transparent; -webkit-text-stroke: 1.5px #7a7a72;">algo sólido.</span></h2>
-
-    <a data-reveal="true" data-delay="120" href="mailto:erickconsolo2706@gmail.com" style="display: inline-flex; align-items: center; gap: 12px; margin-top: 44px; font-family: 'JetBrains Mono', monospace; font-size: clamp(15px, 2.4vw, 22px); color: #ededea; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 6px; transition: border-color .2s; position: relative;" class="hv-15">
-      <span>erickconsolo2706@gmail.com</span>
-      <span style="font-size: 0.8em; color: var(--accent);">↗</span>
+  <!-- RAIL -->
+  <div id="rail" style="position: fixed; left: clamp(20px, 3vw, 40px); top: 50%; transform: translateY(-50%); z-index: 60; display: flex; flex-direction: column; gap: 17px;">
+    <a href="#inicio" data-goto="0" class="hv-rail rail-item" style="display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;">
+      <span class="rail-idx" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--dim); width: 18px;">00</span>
+      <span class="rail-label" data-en="HOME" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--dim); transition: color .25s;">INÍCIO</span>
     </a>
+    <a href="#perfil" data-goto="1" class="hv-rail rail-item" style="display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;">
+      <span class="rail-idx" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--dim); width: 18px;">01</span>
+      <span class="rail-label" data-en="PROFILE" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--dim); transition: color .25s;">PERFIL</span>
+    </a>
+    <a href="#trajetoria" data-goto="2" class="hv-rail rail-item" style="display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;">
+      <span class="rail-idx" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--dim); width: 18px;">02</span>
+      <span class="rail-label" data-en="EXPERIENCE" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--dim); transition: color .25s;">TRAJETÓRIA</span>
+      <span id="rail-sub" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--accent); opacity: 0; transition: opacity .25s;"></span>
+    </a>
+    <a href="#stack" data-goto="7" class="hv-rail rail-item" style="display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;">
+      <span class="rail-idx" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--dim); width: 18px;">03</span>
+      <span class="rail-label" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--dim); transition: color .25s;">STACK</span>
+    </a>
+    <a href="#formacao" data-goto="8" class="hv-rail rail-item" style="display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;">
+      <span class="rail-idx" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--dim); width: 18px;">04</span>
+      <span class="rail-label" data-en="EDUCATION" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--dim); transition: color .25s;">FORMAÇÃO</span>
+    </a>
+    <a href="#contato" data-goto="9" class="hv-rail rail-item" style="display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;">
+      <span class="rail-idx" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--dim); width: 18px;">05</span>
+      <span class="rail-label" data-en="CONTACT" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--dim); transition: color .25s;">CONTATO</span>
+    </a>
+  </div>
 
-    <div data-reveal="true" data-delay="200" style="margin-top: 30px; position: relative;">
-      <a href="#" data-print="true" data-mag="true" data-pt="BAIXAR CV" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1px; transition: background .2s, color .2s;" class="hv-16">DOWNLOAD CV ↓</a>
-    </div>
+  <!-- counter -->
+  <div style="position: fixed; left: clamp(20px, 3vw, 40px); bottom: 22px; z-index: 60; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1.5px; color: var(--dim);">
+    <span id="counter" style="color: var(--muted);">00</span> / 05<span id="counter-sub" style="color: var(--accent);"></span>
+  </div>
 
-    <div data-reveal="true" data-delay="280" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 56px; position: relative;">
-      <a href="https://github.com/econsolo" target="_blank" rel="noopener" data-mag="true" style="flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 6px; padding: 20px; border: 1px solid rgba(255,255,255,0.12); text-decoration: none; color: #ededea; transition: border-color .2s, background .2s, transform .2s;" class="hv-17">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6f6f68;">01</span>
-        <span style="font-size: 17px; font-weight: 500;">GitHub ↗</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9a9a92;">@econsolo</span>
-      </a>
-      <a href="https://linkedin.com/in/econsolo" target="_blank" rel="noopener" data-mag="true" style="flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 6px; padding: 20px; border: 1px solid rgba(255,255,255,0.12); text-decoration: none; color: #ededea; transition: border-color .2s, background .2s, transform .2s;" class="hv-18">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6f6f68;">02</span>
-        <span style="font-size: 17px; font-weight: 500;">LinkedIn ↗</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9a9a92;">in/econsolo</span>
-      </a>
-      <a href="https://instagram.com/econsolo" target="_blank" rel="noopener" data-mag="true" style="flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 6px; padding: 20px; border: 1px solid rgba(255,255,255,0.12); text-decoration: none; color: #ededea; transition: border-color .2s, background .2s, transform .2s;" class="hv-19">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6f6f68;">03</span>
-        <span style="font-size: 17px; font-weight: 500;">Instagram ↗</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9a9a92;">@econsolo</span>
-      </a>
-    </div>
+  <!-- scroll cue -->
+  <div id="cue" style="position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 60; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: opacity .5s;">
+    <span data-en="SCROLL" style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 3px; color: var(--dim);">ROLE</span>
+    <span style="width: 1px; height: 34px; background: var(--accent); display: block; animation: ec-cue 1.9s cubic-bezier(.65,0,.35,1) infinite;"></span>
+  </div>
 
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #6f6f68; position: relative;">
-      <span>© 2026 Erick Cônsolo</span>
-      <span data-pt="Matão · São Paulo · Brasil">Matão · São Paulo · Brazil</span>
+  <!-- ============ CH 00 · HERO ============ -->
+  <section data-step="0" data-ch="00" data-form="nebula" id="inicio" data-screen-label="00 Início" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: visible;">
+    <div class="ch-content" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative;">
+      <div data-d="0" style="display: flex; align-items: center; gap: 14px; font-family: 'IBM Plex Mono', monospace; font-size: clamp(10px, 1.2vw, 12.5px); letter-spacing: 3px; color: var(--accent); margin-bottom: clamp(20px, 3vw, 36px); opacity: 0;">
+        <span style="width: 34px; height: 1px; background: var(--accent); display: inline-block;"></span>
+        <span data-en="BACKEND SOFTWARE ENGINEER">ENGENHEIRO DE SOFTWARE BACKEND</span>
+      </div>
+      <h1 id="name" style="margin: 0; font-weight: 800; font-variation-settings: 'wght' 780; font-size: clamp(54px, 13.5vw, 186px); line-height: 0.9; letter-spacing: -0.045em; user-select: none;">
+        <span style="display: block; overflow: hidden; padding: 0.06em 0;"><span class="kn" style="display: inline-block;">E</span><span class="kn" style="display: inline-block;">R</span><span class="kn" style="display: inline-block;">I</span><span class="kn" style="display: inline-block;">C</span><span class="kn" style="display: inline-block;">K</span></span>
+        <span style="display: block; overflow: hidden; padding: 0.14em 0 0.06em; margin-top: -0.08em; color: transparent; -webkit-text-stroke: 1.5px rgba(234, 232, 226, 0.5);"><span class="kn" style="display: inline-block;">C</span><span class="kn" style="display: inline-block;">Ô</span><span class="kn" style="display: inline-block;">N</span><span class="kn" style="display: inline-block;">S</span><span class="kn" style="display: inline-block;">O</span><span class="kn" style="display: inline-block;">L</span><span class="kn" style="display: inline-block;">O</span></span>
+      </h1>
+      <div data-d="1" style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 14px 30px; margin-top: clamp(24px, 3.4vw, 44px); opacity: 0;">
+        <p data-lang-pt="true" style="margin: 0; max-width: 560px; font-size: clamp(15px, 1.8vw, 19px); font-weight: 300; line-height: 1.55; color: var(--muted); text-wrap: pretty;">
+          Sistemas distribuídos, event-driven e de alta disponibilidade — dez anos no ecossistema <span style="color: var(--fg); font-weight: 500;">.NET</span>, construindo backend para <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.12em; color: var(--accent);">e-commerce em escala enterprise</span>.
+        </p>
+        <p data-lang-en="true" style="display: none; margin: 0; max-width: 560px; font-size: clamp(15px, 1.8vw, 19px); font-weight: 300; line-height: 1.55; color: var(--muted); text-wrap: pretty;">
+          Distributed, event-driven, high-availability systems — ten years across the <span style="color: var(--fg); font-weight: 500;">.NET</span> ecosystem, building backend for <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.12em; color: var(--accent);">enterprise-scale e-commerce</span>.
+        </p>
+        <div style="display: flex; align-items: center; gap: 9px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 1px; color: var(--dim);">
+          <span style="width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: ec-pulse 2s ease-in-out infinite;"></span>
+          <span data-en="MATÃO · SÃO PAULO · BRAZIL">MATÃO · SÃO PAULO · BRASIL</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- CRT overlay -->
-  <div id="crt" style="position: fixed; inset: 0; z-index: 90; pointer-events: none;">
-    <div style="position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px); animation: ec-flicker 8s steps(1) infinite;"></div>
-    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 120% 90% at 50% 40%, transparent 62%, rgba(0,0,0,0.4) 100%);"></div>
-    <div style="position: absolute; left: 0; right: 0; height: 140px; top: -12%; background: linear-gradient(180deg, transparent, rgba(255,255,255,0.03), transparent); animation: ec-beam 10s linear infinite;"></div>
-  </div>
+  <!-- ============ CH 01 · PERFIL ============ -->
+  <section data-step="1" data-ch="01" data-form="wave" id="perfil" data-screen-label="01 Perfil" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(160px, 30vw, 420px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">01</div>
+    <div class="ch-content grid-perfil" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative; display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(30px, 5vw, 80px); align-items: center;">
+      <div>
+        <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); margin-bottom: clamp(18px, 2.6vw, 30px); opacity: 0;"><span data-en="01 — PROFILE">01 — PERFIL</span></div>
+        <p data-d="1" data-lang-pt="true" style="margin: 0; font-size: clamp(21px, 2.7vw, 34px); font-weight: 300; line-height: 1.42; letter-spacing: -0.01em; color: #d3d2cb; text-wrap: pretty; opacity: 0;">
+          Uma década construindo backend — do full-stack em times pequenos e velozes a serviços distribuídos por trás de <span style="color: var(--fg); font-weight: 500;">e-commerce em escala enterprise</span>. Confiabilidade sob pico de carga, arquitetura limpa e <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.1em; color: var(--accent);">código que sobrevive à sprint</span>.
+        </p>
+        <p data-d="1" data-lang-en="true" style="display: none; margin: 0; font-size: clamp(21px, 2.7vw, 34px); font-weight: 300; line-height: 1.42; letter-spacing: -0.01em; color: #d3d2cb; text-wrap: pretty; opacity: 0;">
+          A decade building backend — from full-stack work in small, fast teams to distributed services behind <span style="color: var(--fg); font-weight: 500;">enterprise-scale e-commerce</span>. Reliability under peak load, clean architecture, and <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.1em; color: var(--accent);">code that outlives the sprint</span>.
+        </p>
+        <div data-d="2" style="display: flex; flex-wrap: wrap; gap: clamp(22px, 3.4vw, 48px); margin-top: clamp(26px, 3.6vw, 48px); opacity: 0;">
+          <div>
+            <div style="font-size: clamp(28px, 3.2vw, 42px); font-weight: 650; letter-spacing: -0.03em;">10+</div>
+            <div data-en="YEARS SHIPPING" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1px; color: var(--dim); margin-top: 4px;">ANOS ENTREGANDO</div>
+          </div>
+          <div>
+            <div style="font-size: clamp(28px, 3.2vw, 42px); font-weight: 650; letter-spacing: -0.03em;">.NET</div>
+            <div data-en="CORE STACK" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1px; color: var(--dim); margin-top: 4px;">NÚCLEO DO STACK</div>
+          </div>
+          <div>
+            <div style="font-size: clamp(28px, 3.2vw, 42px); font-weight: 650; letter-spacing: -0.03em;">5</div>
+            <div data-en="COMPANIES" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1px; color: var(--dim); margin-top: 4px;">EMPRESAS</div>
+          </div>
+          <div>
+            <div style="font-size: clamp(28px, 3.2vw, 42px); font-weight: 650; letter-spacing: -0.03em;">PT·EN</div>
+            <div data-en="LANGUAGES" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1px; color: var(--dim); margin-top: 4px;">IDIOMAS</div>
+          </div>
+        </div>
+      </div>
+      <div class="photo-cell" data-d="1" style="justify-self: center; perspective: 1000px; opacity: 0;">
+        <div id="photo-wrap" style="position: relative; width: clamp(210px, 24vw, 330px); aspect-ratio: 4 / 5; transform-style: preserve-3d; transition: transform .2s ease-out;">
+          <div style="position: absolute; inset: 0; overflow: hidden;">
+            <img src="photo.jpg" alt="Erick Cônsolo" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(0.25) contrast(1.04);">
+          </div>
+          <div style="position: absolute; inset: -1px; border: 1px solid rgba(234, 232, 226, 0.18); pointer-events: none;"></div>
+          <div style="position: absolute; top: -7px; left: -7px; width: 20px; height: 20px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent);"></div>
+          <div style="position: absolute; bottom: -7px; right: -7px; width: 20px; height: 20px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent);"></div>
+          <div style="position: absolute; bottom: 10px; left: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 1.5px; color: var(--fg); background: rgba(7, 9, 13, 0.6); padding: 5px 9px; backdrop-filter: blur(4px);">MATÃO · SP<span style="color: var(--accent);"> · BR</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- grain -->
-  <div style="position: fixed; inset: 0; z-index: 89; pointer-events: none; opacity: 0.05; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url%28%23n%29'/%3E%3C/svg%3E&quot;);"></div>
+  <!-- ============ CH 02 · TRAJETÓRIA (5 paradas) ============ -->
+  <section data-step="2" data-ch="02" data-sub="1" data-form="tunnel" id="trajetoria" data-screen-label="02 Trajetória — Casas Bahia" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(130px, 24vw, 340px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">2022</div>
+    <div class="ch-content grid-job" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative; display: grid; grid-template-columns: 240px 1fr; gap: clamp(24px, 4vw, 70px); align-items: center;">
+      <div>
+        <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); opacity: 0;"><span data-en="02 — EXPERIENCE">02 — TRAJETÓRIA</span></div>
+        <div data-d="1" class="job-years-big" style="margin-top: 16px; font-weight: 250; font-size: clamp(34px, 4vw, 54px); line-height: 1.1; letter-spacing: -0.02em; color: var(--fg); opacity: 0;">2022<br><span style="color: var(--accent);" data-en="NOW">AGORA</span></div>
+        <div data-d="2" style="display: flex; gap: 5px; margin-top: 22px; opacity: 0;">
+          <span style="width: 26px; height: 2px; background: var(--accent);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span>
+        </div>
+      </div>
+      <div>
+        <h2 data-d="1" data-en="System Specialist" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Especialista de Sistemas</h2>
+        <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">Casas Bahia Tecnologia</div>
+        <p data-d="3" data-en="High-availability services for one of Brazil's largest e-commerce platforms — orders, payments and partner integrations — on distributed, event-driven architectures using messaging, caching and cloud-native observability built for peak demand." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Serviços de alta disponibilidade para uma das maiores plataformas de e-commerce do Brasil — pedidos, pagamentos e integrações com parceiros — sobre arquiteturas distribuídas e event-driven, com mensageria, caching e observabilidade cloud-native prontas para picos de demanda.</p>
+        <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">.NET</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">DISTRIBUTED SYSTEMS</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">MESSAGING</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">OBSERVABILITY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-step="3" data-ch="02" data-sub="2" data-form="tunnel" data-screen-label="02 Trajetória — 5by5 Sênior" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(130px, 24vw, 340px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">2020</div>
+    <div class="ch-content grid-job" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative; display: grid; grid-template-columns: 240px 1fr; gap: clamp(24px, 4vw, 70px); align-items: center;">
+      <div>
+        <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); opacity: 0;"><span data-en="02 — EXPERIENCE">02 — TRAJETÓRIA</span></div>
+        <div data-d="1" class="job-years-big" style="margin-top: 16px; font-weight: 250; font-size: clamp(34px, 4vw, 54px); line-height: 1.1; letter-spacing: -0.02em; color: var(--fg); opacity: 0;">2020<br><span style="color: var(--dim);">2022</span></div>
+        <div data-d="2" style="display: flex; gap: 5px; margin-top: 22px; opacity: 0;">
+          <span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--accent);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span>
+        </div>
+      </div>
+      <div>
+        <h2 data-d="1" data-en="Senior Software Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor Sênior</h2>
+        <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">5by5 · Soluções em Sistemas</div>
+        <p data-d="3" data-en="Designed and maintained high-availability APIs and microservices in .NET Core for enterprise clients — cloud-native, event-driven, container-orchestrated, with automated testing and clean-code practices." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Projetei e mantive APIs e microsserviços de alta disponibilidade em .NET Core para clientes enterprise — cloud-native, event-driven, orquestrados em containers, com testes automatizados e práticas de clean code.</p>
+        <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">C# / .NET CORE</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">KUBERNETES</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">REDIS</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">gRPC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-step="4" data-ch="02" data-sub="3" data-form="tunnel" data-screen-label="02 Trajetória — 5by5 Dev" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(130px, 24vw, 340px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">2019</div>
+    <div class="ch-content grid-job" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative; display: grid; grid-template-columns: 240px 1fr; gap: clamp(24px, 4vw, 70px); align-items: center;">
+      <div>
+        <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); opacity: 0;"><span data-en="02 — EXPERIENCE">02 — TRAJETÓRIA</span></div>
+        <div data-d="1" class="job-years-big" style="margin-top: 16px; font-weight: 250; font-size: clamp(34px, 4vw, 54px); line-height: 1.1; letter-spacing: -0.02em; color: var(--fg); opacity: 0;">2019<br><span style="color: var(--dim);">2020</span></div>
+        <div data-d="2" style="display: flex; gap: 5px; margin-top: 22px; opacity: 0;">
+          <span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--accent);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span>
+        </div>
+      </div>
+      <div>
+        <h2 data-d="1" data-en="Software Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor de Software</h2>
+        <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">5by5 · Soluções em Sistemas</div>
+        <p data-d="3" data-en="Backend development of scalable, distributed services within the .NET Core ecosystem, contributing to agile delivery for enterprise-level products." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Desenvolvimento backend de serviços escaláveis e distribuídos no ecossistema .NET Core, contribuindo com entregas ágeis para produtos enterprise.</p>
+        <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">.NET CORE</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">MICROSERVICES</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">AGILE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-step="5" data-ch="02" data-sub="4" data-form="tunnel" data-screen-label="02 Trajetória — Simples" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(130px, 24vw, 340px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">2015</div>
+    <div class="ch-content grid-job" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative; display: grid; grid-template-columns: 240px 1fr; gap: clamp(24px, 4vw, 70px); align-items: center;">
+      <div>
+        <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); opacity: 0;"><span data-en="02 — EXPERIENCE">02 — TRAJETÓRIA</span></div>
+        <div data-d="1" class="job-years-big" style="margin-top: 16px; font-weight: 250; font-size: clamp(34px, 4vw, 54px); line-height: 1.1; letter-spacing: -0.02em; color: var(--fg); opacity: 0;">2015<br><span style="color: var(--dim);">2019</span></div>
+        <div data-d="2" style="display: flex; gap: 5px; margin-top: 22px; opacity: 0;">
+          <span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--accent);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span>
+        </div>
+      </div>
+      <div>
+        <h2 data-d="1" data-en="Full Stack Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor Full Stack</h2>
+        <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">Simples</div>
+        <p data-d="3" data-en="Owned the full delivery lifecycle in a small, fast-paced team — from requirements with stakeholders to deployment and production support — across C#/.NET, Java, Node, Angular, Vue and Flutter." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Dono do ciclo completo de entrega em um time pequeno e veloz — do levantamento com stakeholders ao deploy e suporte em produção — com C#/.NET, Java, Node, Angular, Vue e Flutter.</p>
+        <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">FULL STACK</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">JAVA · NODE</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">ANGULAR · VUE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-step="6" data-ch="02" data-sub="5" data-form="tunnel" data-screen-label="02 Trajetória — CAST" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(130px, 24vw, 340px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">2014</div>
+    <div class="ch-content grid-job" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative; display: grid; grid-template-columns: 240px 1fr; gap: clamp(24px, 4vw, 70px); align-items: center;">
+      <div>
+        <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); opacity: 0;"><span data-en="02 — EXPERIENCE">02 — TRAJETÓRIA</span></div>
+        <div data-d="1" class="job-years-big" style="margin-top: 16px; font-weight: 250; font-size: clamp(34px, 4vw, 54px); line-height: 1.1; letter-spacing: -0.02em; color: var(--fg); opacity: 0;">2014<br><span style="color: var(--dim);">2015</span></div>
+        <div data-d="2" style="display: flex; gap: 5px; margin-top: 22px; opacity: 0;">
+          <span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--line);"></span><span style="width: 26px; height: 2px; background: var(--accent);"></span>
+        </div>
+      </div>
+      <div>
+        <h2 data-d="1" data-en="C# Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor C#</h2>
+        <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">CAST</div>
+        <p data-d="3" data-en="Selected for a 20-student cohort in an intensive C# and software-fundamentals program — OOP, software logic and hands-on project preparation." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Selecionado para uma turma de 20 alunos em um programa intensivo de C# e fundamentos de software — POO, lógica e preparação prática de projetos.</p>
+        <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">C#</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);">OOP</span>
+          <span style="padding: 5px 10px; border: 1px solid var(--line);" data-en="FUNDAMENTALS">FUNDAMENTOS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CH 03 · STACK ============ -->
+  <section data-step="7" data-ch="03" data-form="lattice" id="stack" data-screen-label="03 Stack" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(160px, 30vw, 420px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">03</div>
+    <div class="ch-content" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative;">
+      <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); margin-bottom: clamp(20px, 3vw, 36px); opacity: 0;">03 — STACK</div>
+      <h2 data-d="1" data-lang-pt="true" style="margin: 0 0 clamp(28px, 4vw, 52px); font-size: clamp(28px, 4.4vw, 56px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.04; opacity: 0;">Ferramentas de <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--accent);">produção</span>.</h2>
+      <h2 data-d="1" data-lang-en="true" style="display: none; margin: 0 0 clamp(28px, 4vw, 52px); font-size: clamp(28px, 4.4vw, 56px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.04; opacity: 0;">Tools of <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--accent);">production</span>.</h2>
+      <div class="grid-stack" data-d="2" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 3vw, 44px); opacity: 0;">
+        <div>
+          <div data-en="LANGUAGES" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; color: var(--dim); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line);">LINGUAGENS</div>
+          <div style="display: flex; flex-direction: column; gap: 9px; font-size: clamp(14px, 1.5vw, 16px); font-weight: 300; color: #cfcec7;"><span>C# / .NET</span><span>Java</span><span>Python</span><span>Node.js</span><span>JavaScript</span></div>
+        </div>
+        <div>
+          <div data-en="MESSAGING" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; color: var(--dim); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line);">MENSAGERIA</div>
+          <div style="display: flex; flex-direction: column; gap: 9px; font-size: clamp(14px, 1.5vw, 16px); font-weight: 300; color: #cfcec7;"><span>Azure Service Bus</span><span>RabbitMQ</span><span>Apache Kafka</span><span>Amazon SQS</span></div>
+        </div>
+        <div>
+          <div data-en="DATA" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; color: var(--dim); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line);">DADOS</div>
+          <div style="display: flex; flex-direction: column; gap: 9px; font-size: clamp(14px, 1.5vw, 16px); font-weight: 300; color: #cfcec7;"><span>SQL Server</span><span>MongoDB</span><span>Cosmos DB</span><span>PostgreSQL</span><span>Redis</span></div>
+        </div>
+        <div>
+          <div data-en="INFRA · PROTOCOLS" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; color: var(--dim); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line);">INFRA · PROTOCOLOS</div>
+          <div style="display: flex; flex-direction: column; gap: 9px; font-size: clamp(14px, 1.5vw, 16px); font-weight: 300; color: #cfcec7;"><span>Docker · Kubernetes</span><span>Azure · App Insights</span><span>REST · gRPC · SOAP</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CH 04 · FORMAÇÃO ============ -->
+  <section data-step="8" data-ch="04" data-form="rings" id="formacao" data-screen-label="04 Formação" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(160px, 30vw, 420px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">04</div>
+    <div class="ch-content" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative;">
+      <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); margin-bottom: clamp(20px, 3vw, 36px); opacity: 0;"><span data-en="04 — EDUCATION">04 — FORMAÇÃO</span></div>
+      <div data-d="1" style="max-width: 780px; opacity: 0;">
+        <div style="display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding: 26px 0; border-top: 1px solid var(--line);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim);">2014—2017</div>
+          <div>
+            <div data-en="Technology Degree — Systems Analysis &amp; Software Development" style="font-size: clamp(17px, 2vw, 22px); font-weight: 550; letter-spacing: -0.01em;">Tecnólogo — Análise e Desenvolvimento de Sistemas</div>
+            <div data-en="FATEC — São Paulo State College of Technology" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 6px;">FATEC — Faculdade de Tecnologia do Estado de São Paulo</div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding: 26px 0; border-top: 1px solid var(--line);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim);">2010—2015</div>
+          <div>
+            <div data-en="Advanced English Language Program" style="font-size: clamp(17px, 2vw, 22px); font-weight: 550; letter-spacing: -0.01em;">Programa Avançado de Língua Inglesa</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 6px;">Wizard by Pearson</div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+          <div data-en="LANGUAGES" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim);">IDIOMAS</div>
+          <div data-en="Portuguese — native · English — advanced" style="font-size: clamp(15px, 1.7vw, 18px); font-weight: 300; color: #cfcec7;">Português — nativo · Inglês — avançado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CH 05 · CONTATO ============ -->
+  <section data-step="9" data-ch="05" data-form="sphere" id="contato" data-screen-label="05 Contato" style="position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; visibility: hidden;">
+    <div class="ch-num" data-d="0" data-amp="2.4" style="position: absolute; right: clamp(8px, 3vw, 60px); top: 50%; margin-top: -0.5em; font-weight: 200; font-size: clamp(160px, 30vw, 420px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(234, 232, 226, 0.07); pointer-events: none; user-select: none; opacity: 0;">05</div>
+    <div class="ch-content" style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 90px clamp(22px, 6vw, 64px) 70px; position: relative;">
+      <div data-d="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 3px; color: var(--accent); margin-bottom: clamp(20px, 3vw, 36px); opacity: 0;"><span data-en="05 — CONTACT">05 — CONTATO</span></div>
+      <h2 data-d="1" data-lang-pt="true" style="margin: 0; font-size: clamp(40px, 8vw, 110px); font-weight: 750; line-height: 0.96; letter-spacing: -0.045em; opacity: 0;">Vamos construir<br><span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; color: var(--accent);">algo sólido.</span></h2>
+      <h2 data-d="1" data-lang-en="true" style="display: none; margin: 0; font-size: clamp(40px, 8vw, 110px); font-weight: 750; line-height: 0.96; letter-spacing: -0.045em; opacity: 0;">Let's build<br><span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; color: var(--accent);">something solid.</span></h2>
+      <a data-d="2" href="mailto:erickconsolo2706@gmail.com" style="display: inline-flex; align-items: center; gap: 12px; margin-top: clamp(28px, 4vw, 46px); font-family: 'IBM Plex Mono', monospace; font-size: clamp(14px, 2.2vw, 21px); color: var(--fg); text-decoration: none; border-bottom: 1px solid rgba(234, 232, 226, 0.3); padding-bottom: 7px; opacity: 0;" class="hv-mail">
+        <span>erickconsolo2706@gmail.com</span><span style="color: var(--accent); font-size: 0.85em;">↗</span>
+      </a>
+      <div data-d="3" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 26px; margin-top: clamp(26px, 3.6vw, 44px); opacity: 0;">
+        <a href="#" data-print="true" data-mag="true" data-en="DOWNLOAD CV ↓" style="display: inline-flex; padding: 13px 22px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 1.5px;" class="hv-btn">BAIXAR CV ↓</a>
+        <a href="https://github.com/econsolo" target="_blank" rel="noopener" style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: 1px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 3px;" class="hv-soc">GITHUB ↗</a>
+        <a href="https://linkedin.com/in/econsolo" target="_blank" rel="noopener" style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: 1px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 3px;" class="hv-soc">LINKEDIN ↗</a>
+        <a href="https://instagram.com/econsolo" target="_blank" rel="noopener" style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: 1px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 3px;" class="hv-soc">INSTAGRAM ↗</a>
+      </div>
+      <div data-d="4" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: clamp(34px, 5vw, 64px); padding-top: 20px; border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; color: var(--dim); opacity: 0;">
+        <span>© 2026 ERICK CÔNSOLO</span>
+        <span data-en="MATÃO · SÃO PAULO · BRAZIL">MATÃO · SÃO PAULO · BRASIL</span>
+      </div>
+    </div>
+  </section>
 
   <!-- custom cursor -->
-  <div id="ec-cursor" style="position: fixed; top: 0; left: 0; width: 32px; height: 32px; border: 1px solid #fff; border-radius: 50%; z-index: 100; pointer-events: none; mix-blend-mode: difference; transform: translate(-100px, -100px); transition: width .25s, height .25s; display: none;"></div>
-  <div id="ec-cursor-dot" style="position: fixed; top: 0; left: 0; width: 5px; height: 5px; background: #fff; border-radius: 50%; z-index: 100; pointer-events: none; mix-blend-mode: difference; transform: translate(-100px, -100px); display: none;"></div>
+  <div id="cursor-ring" style="position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1px solid #fff; border-radius: 50%; z-index: 100; pointer-events: none; mix-blend-mode: difference; transform: translate(-100px, -100px); transition: width .25s, height .25s; display: none;"></div>
+  <div id="cursor-dot" style="position: fixed; top: 0; left: 0; width: 4px; height: 4px; background: #fff; border-radius: 50%; z-index: 100; pointer-events: none; mix-blend-mode: difference; transform: translate(-100px, -100px); display: none;"></div>
 </div>
 
-<!-- PRINT-ONLY CV -->
-<div id="print-cv" style="display: none; background: #fff; color: #1a1a1a; font-family: 'Space Grotesk', Arial, sans-serif; max-width: 760px; margin: 0 auto; line-height: 1.5;">
+<!-- ============ PRINT-ONLY CV ============ -->
+<div id="print-cv" style="display: none; background: #fff; color: #1a1a1a; font-family: 'Archivo', Arial, sans-serif; max-width: 760px; margin: 0 auto; line-height: 1.5;">
   <header style="border-bottom: 2px solid #1a1a1a; padding-bottom: 14px; margin-bottom: 18px;">
     <h1 style="margin: 0; font-size: 30px; letter-spacing: -0.02em;">Erick Cônsolo</h1>
-    <div data-pt="Engenheiro de Software Backend" style="font-size: 13px; color: #555; margin-top: 4px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.3px;">Backend Software Engineer</div>
-    <div style="font-size: 11.5px; color: #333; margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 12px; font-family: 'JetBrains Mono', monospace;">
-      <span>erickconsolo2706@gmail.com</span><span>·</span><span>Matão, São Paulo — Brazil</span><span>·</span><span>github.com/econsolo</span><span>·</span><span>linkedin.com/in/econsolo</span>
+    <div data-en="Backend Software Engineer" style="font-size: 13px; color: #555; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px;">Engenheiro de Software Backend</div>
+    <div style="font-size: 11.5px; color: #333; margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 12px; font-family: 'IBM Plex Mono', monospace;">
+      <span>erickconsolo2706@gmail.com</span><span>·</span><span>Matão, São Paulo — Brasil</span><span>·</span><span>github.com/econsolo</span><span>·</span><span>linkedin.com/in/econsolo</span>
     </div>
   </header>
-  <p data-pt="Engenheiro backend com 10+ anos construindo sistemas confiáveis e escaláveis no ecossistema .NET — do full-stack em times pequenos e rápidos a serviços distribuídos e event-driven para e-commerce em escala enterprise sob pico de carga." style="font-size: 13px; margin: 0 0 20px; color: #222;">Backend engineer with 10+ years building reliable, scalable systems across the .NET ecosystem — from full-stack delivery in small, fast teams to distributed, event-driven services for enterprise-scale e-commerce under peak load.</p>
+  <p data-en="Backend engineer with 10+ years building reliable, scalable systems across the .NET ecosystem — from full-stack delivery in small, fast teams to distributed, event-driven services for enterprise-scale e-commerce under peak load." style="font-size: 13px; margin: 0 0 20px; color: #222;">Engenheiro backend com 10+ anos construindo sistemas confiáveis e escaláveis no ecossistema .NET — do full-stack em times pequenos e rápidos a serviços distribuídos e event-driven para e-commerce em escala enterprise sob pico de carga.</p>
 
   <section style="margin-bottom: 18px;">
-    <h2 data-pt="Experiência" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'JetBrains Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Experience</h2>
+    <h2 data-en="Experience" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Experiência</h2>
     <div style="margin-bottom: 11px;">
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-pt="Especialista de Sistemas — Casas Bahia Tecnologia" style="font-size: 14px;">System Specialist — Casas Bahia Tecnologia</strong><span data-pt="2022 — Agora" style="font-size: 11px; color: #777; font-family: 'JetBrains Mono', monospace; white-space: nowrap;">2022 — Now</span></div>
-      <div data-pt="Serviços de alta disponibilidade para e-commerce em larga escala — pedidos, pagamentos, integrações com parceiros — em arquiteturas distribuídas e event-driven com mensageria, caching e observabilidade cloud-native para picos de demanda." style="font-size: 12.5px; color: #444; margin-top: 3px;">High-availability services for large-scale e-commerce — orders, payments, partner integrations — within distributed, event-driven architectures using messaging, caching and cloud-native observability for peak demand.</div>
+      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="System Specialist — Casas Bahia Tecnologia" style="font-size: 14px;">Especialista de Sistemas — Casas Bahia Tecnologia</strong><span data-en="2022 — Now" style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2022 — Agora</span></div>
+      <div data-en="High-availability services for large-scale e-commerce — orders, payments, partner integrations — within distributed, event-driven architectures using messaging, caching and cloud-native observability for peak demand." style="font-size: 12.5px; color: #444; margin-top: 3px;">Serviços de alta disponibilidade para e-commerce em larga escala — pedidos, pagamentos, integrações com parceiros — em arquiteturas distribuídas e event-driven com mensageria, caching e observabilidade cloud-native para picos de demanda.</div>
     </div>
     <div style="margin-bottom: 11px;">
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-pt="Desenvolvedor Sênior — 5by5" style="font-size: 14px;">Senior Software Developer — 5by5</strong><span style="font-size: 11px; color: #777; font-family: 'JetBrains Mono', monospace; white-space: nowrap;">2020 — 2022</span></div>
-      <div data-pt="Projetei e mantive APIs e microsserviços de alta disponibilidade em .NET Core para clientes enterprise — cloud-native, orquestrados em containers, com testes automatizados e clean code." style="font-size: 12.5px; color: #444; margin-top: 3px;">Designed and maintained high-availability APIs and microservices in .NET Core for enterprise clients — cloud-native, container-orchestrated, with automated testing and clean-code practices.</div>
+      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="Senior Software Developer — 5by5" style="font-size: 14px;">Desenvolvedor Sênior — 5by5</strong><span style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2020 — 2022</span></div>
+      <div data-en="Designed and maintained high-availability APIs and microservices in .NET Core for enterprise clients — cloud-native, container-orchestrated, with automated testing and clean-code practices." style="font-size: 12.5px; color: #444; margin-top: 3px;">Projetei e mantive APIs e microsserviços de alta disponibilidade em .NET Core para clientes enterprise — cloud-native, orquestrados em containers, com testes automatizados e clean code.</div>
     </div>
     <div style="margin-bottom: 11px;">
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-pt="Desenvolvedor de Software — 5by5" style="font-size: 14px;">Software Developer — 5by5</strong><span style="font-size: 11px; color: #777; font-family: 'JetBrains Mono', monospace; white-space: nowrap;">2019 — 2020</span></div>
-      <div data-pt="Desenvolvimento backend de serviços escaláveis e distribuídos no ecossistema .NET Core, com entregas ágeis para produtos enterprise." style="font-size: 12.5px; color: #444; margin-top: 3px;">Backend development of scalable, distributed services within the .NET Core ecosystem, contributing to agile delivery for enterprise products.</div>
+      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="Software Developer — 5by5" style="font-size: 14px;">Desenvolvedor de Software — 5by5</strong><span style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2019 — 2020</span></div>
+      <div data-en="Backend development of scalable, distributed services within the .NET Core ecosystem, contributing to agile delivery for enterprise products." style="font-size: 12.5px; color: #444; margin-top: 3px;">Desenvolvimento backend de serviços escaláveis e distribuídos no ecossistema .NET Core, com entregas ágeis para produtos enterprise.</div>
     </div>
     <div style="margin-bottom: 11px;">
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-pt="Desenvolvedor Full Stack — Simples" style="font-size: 14px;">Full Stack Developer — Simples</strong><span style="font-size: 11px; color: #777; font-family: 'JetBrains Mono', monospace; white-space: nowrap;">2015 — 2019</span></div>
-      <div data-pt="Ciclo completo de entrega em um time pequeno e veloz — do levantamento ao deploy e suporte em produção — com C#/.NET, Java, Node, Angular, Vue e Flutter." style="font-size: 12.5px; color: #444; margin-top: 3px;">Owned the full delivery lifecycle in a small, fast-paced team — from requirements to deployment and production support — across C#/.NET, Java, Node, Angular, Vue and Flutter.</div>
+      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="Full Stack Developer — Simples" style="font-size: 14px;">Desenvolvedor Full Stack — Simples</strong><span style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2015 — 2019</span></div>
+      <div data-en="Owned the full delivery lifecycle in a small, fast-paced team — from requirements to deployment and production support — across C#/.NET, Java, Node, Angular, Vue and Flutter." style="font-size: 12.5px; color: #444; margin-top: 3px;">Ciclo completo de entrega em um time pequeno e veloz — do levantamento ao deploy e suporte em produção — com C#/.NET, Java, Node, Angular, Vue e Flutter.</div>
     </div>
     <div>
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-pt="Desenvolvedor C# — CAST" style="font-size: 14px;">C# Developer — CAST</strong><span style="font-size: 11px; color: #777; font-family: 'JetBrains Mono', monospace; white-space: nowrap;">2014 — 2015</span></div>
-      <div data-pt="Selecionado para uma turma de 20 alunos em um programa intensivo de C# e fundamentos de software — POO, lógica e preparação prática de projetos." style="font-size: 12.5px; color: #444; margin-top: 3px;">Selected for a 20-student cohort in an intensive C# and software-fundamentals program — OOP, software logic and hands-on project preparation.</div>
+      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="C# Developer — CAST" style="font-size: 14px;">Desenvolvedor C# — CAST</strong><span style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2014 — 2015</span></div>
+      <div data-en="Selected for a 20-student cohort in an intensive C# and software-fundamentals program — OOP, software logic and hands-on project preparation." style="font-size: 12.5px; color: #444; margin-top: 3px;">Selecionado para uma turma de 20 alunos em um programa intensivo de C# e fundamentos de software — POO, lógica e preparação prática de projetos.</div>
     </div>
   </section>
 
   <div style="display: flex; gap: 36px;">
     <section style="flex: 1;">
-      <h2 style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'JetBrains Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Skills</h2>
-      <div style="font-size: 12.5px; color: #333; line-height: 1.7;"><strong data-pt="Linguagens:">Languages:</strong> C#/.NET, Java, Python, Node.js, JavaScript<br><strong data-pt="Mensageria:">Messaging:</strong> Azure Service Bus, RabbitMQ, Kafka, Amazon SQS<br><strong data-pt="Dados:">Data:</strong> SQL Server, MongoDB, Cosmos DB, PostgreSQL, Redis<br><strong>Infra:</strong> Docker, Kubernetes, Azure, App Insights<br><strong data-pt="Protocolos:">Protocols:</strong> REST, gRPC, SOAP</div>
+      <h2 style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Skills</h2>
+      <div style="font-size: 12.5px; color: #333; line-height: 1.7;"><strong data-en="Languages:">Linguagens:</strong> C#/.NET, Java, Python, Node.js, JavaScript<br><strong data-en="Messaging:">Mensageria:</strong> Azure Service Bus, RabbitMQ, Kafka, Amazon SQS<br><strong data-en="Data:">Dados:</strong> SQL Server, MongoDB, Cosmos DB, PostgreSQL, Redis<br><strong>Infra:</strong> Docker, Kubernetes, Azure, App Insights<br><strong data-en="Protocols:">Protocolos:</strong> REST, gRPC, SOAP</div>
     </section>
     <section style="flex: 1;">
-      <h2 data-pt="Formação" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'JetBrains Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Education</h2>
-      <div style="margin-bottom: 10px;"><strong data-pt="Análise e Desenvolvimento de Sistemas" style="font-size: 13px;">Systems Analysis &amp; Software Development</strong><div data-pt="FATEC — Faculdade de Tecnologia do Estado de São Paulo · 2014–2017" style="font-size: 12px; color: #555;">FATEC — São Paulo State College of Technology · 2014–2017</div></div>
-      <div><strong data-pt="Programa Avançado de Inglês" style="font-size: 13px;">Advanced English Program</strong><div style="font-size: 12px; color: #555;">Wizard by Pearson · 2010–2015</div></div>
-      <h2 data-pt="Idiomas" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'JetBrains Mono', monospace; margin: 16px 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Languages</h2>
-      <div data-pt="Português (nativo) · Inglês (avançado)" style="font-size: 12.5px; color: #333;">Portuguese (native) · English (advanced)</div>
+      <h2 data-en="Education" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Formação</h2>
+      <div style="margin-bottom: 10px;"><strong data-en="Systems Analysis &amp; Software Development" style="font-size: 13px;">Análise e Desenvolvimento de Sistemas</strong><div data-en="FATEC — São Paulo State College of Technology · 2014–2017" style="font-size: 12px; color: #555;">FATEC — Faculdade de Tecnologia do Estado de São Paulo · 2014–2017</div></div>
+      <div><strong data-en="Advanced English Program" style="font-size: 13px;">Programa Avançado de Inglês</strong><div style="font-size: 12px; color: #555;">Wizard by Pearson · 2010–2015</div></div>
+      <h2 data-en="Languages" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 16px 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Idiomas</h2>
+      <div data-en="Portuguese (native) · English (advanced)" style="font-size: 12.5px; color: #333;">Português (nativo) · Inglês (avançado)</div>
     </section>
   </div>
 </div>
-</div>
+
 <script>
-class DCLogic {
-  constructor() { this.props = {}; }
-  setState() {}
-  forceUpdate() {}
-}
-class Component extends DCLogic {
-  componentDidMount() {
-    this._cleanup = [];
-    this._timers = [];
-    this._root = document.getElementById('ec-root');
-    if (!this._root) return;
-    this._reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this._mx = -9999; this._my = -9999;
-    this.applyProps();
-    this.initLang();
-    this.initPrint();
-    this.initResponsive();
-    this.initReveals();
-    this.initScrollFx();
-    this.initParticles();
-    this.initCursor();
-    this.initKinetic();
-    this.initTilt();
-    this.initMagnetic();
-    this.initGlitchLoop();
-    this.initSpotlight();
-    this.initShockwave();
-    this.initVelocity();
-    this.initHoverScramble();
-    this.initBoot();
-    this.initGhostYear();
-    this.initParty();
-    this.initMatrix();
-  }
+(function () {
+  'use strict';
 
-  componentDidUpdate() { this.applyProps(); }
+  // ============================================================
+  //  STATE
+  // ============================================================
+  var SECTIONS = Array.prototype.slice.call(document.querySelectorAll('section[data-step]'));
+  var TOTAL = SECTIONS.length;            // 10 paradas
+  var SP = 16;                            // distância da câmera entre paradas
+  var AHEAD = 12;                         // formação fica à frente da câmera
+  var REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FINE = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  var cur = 0;
+  var locked = true;                      // destravado após a entrada
+  var camZ = SP * -0;                     // posição atual da câmera (animada)
+  var mixVal = 1, warpVal = 0;
+  var mouseX = 0, mouseY = 0;             // -1..1
+  var mHas = false;
+  var rotX = 0, rotY = 0;                 // parallax suavizado
+  var raf = null;
 
-  componentWillUnmount() {
-    (this._cleanup || []).forEach(function (fn) { try { fn(); } catch (e) {} });
-    (this._timers || []).forEach(function (t) { clearTimeout(t); clearInterval(t); });
-  }
+  SECTIONS.forEach(function (sec, i) {
+    sec._z = -i * SP;
+    sec._els = Array.prototype.slice.call(sec.querySelectorAll('[data-d]'));
+  });
 
-  applyProps() {
-    if (!this._root) return;
-    var a = this.props.accentColor != null ? this.props.accentColor : '#54e0a3';
-    this._accent = a;
-    this._root.style.setProperty('--accent', a);
-    var crt = this.props.crtOverlay != null ? this.props.crtOverlay : true;
-    var crtEl = document.getElementById('crt');
-    if (crtEl) crtEl.style.display = crt ? '' : 'none';
-    this._particlesOn = this.props.particles != null ? this.props.particles : true;
-    var pf = document.getElementById('pfield');
-    if (pf) pf.style.display = this._particlesOn ? '' : 'none';
-  }
+  function ease5(t) { return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2; }
+  function easeOut5(t) { return 1 - Math.pow(1 - t, 5); }
+  function easeOut3(t) { return 1 - Math.pow(1 - t, 3); }
+  function clamp01(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
 
-  // ---------- i18n ----------
-  initLang() {
-    var self = this;
-    var els = document.querySelectorAll('[data-pt]');
-    Array.prototype.forEach.call(els, function (el) {
-      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el.textContent);
+  // ============================================================
+  //  I18N  (PT primário · EN via data-en / data-lang-*)
+  // ============================================================
+  var lang = 'pt';
+  try { lang = localStorage.getItem('ec_lang') || 'pt'; } catch (e) {}
+
+  function initLang() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en]'), function (el) {
+      if (!el.hasAttribute('data-pt')) el.setAttribute('data-pt', el.textContent);
     });
-    var saved = 'en';
-    try { saved = localStorage.getItem('ec_lang') || 'en'; } catch (e) {}
-    this.setLang(saved, true);
+    setLang(lang);
     var btn = document.getElementById('langbtn');
-    if (btn) {
-      var onClick = function () { self.setLang(self._lang === 'en' ? 'pt' : 'en', false); };
-      btn.addEventListener('click', onClick);
-      this._cleanup.push(function () { btn.removeEventListener('click', onClick); });
+    if (btn) btn.addEventListener('click', function () { setLang(lang === 'pt' ? 'en' : 'pt'); });
+  }
+
+  function setLang(l) {
+    lang = l;
+    try { localStorage.setItem('ec_lang', l); } catch (e) {}
+    document.documentElement.lang = l === 'pt' ? 'pt-BR' : 'en';
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en]'), function (el) {
+      el.textContent = l === 'pt' ? el.getAttribute('data-pt') : el.getAttribute('data-en');
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lang-pt]'), function (el) {
+      el.style.display = l === 'pt' ? '' : 'none';
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lang-en]'), function (el) {
+      el.style.display = l === 'pt' ? 'none' : '';
+    });
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (pt) pt.style.color = l === 'pt' ? 'var(--accent)' : 'var(--dim)';
+    if (en) en.style.color = l === 'en' ? 'var(--accent)' : 'var(--dim)';
+  }
+
+  // ============================================================
+  //  PRINT
+  // ============================================================
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target.closest('[data-print]') : null;
+    if (!t) return;
+    e.preventDefault();
+    window.print();
+  });
+
+  // ============================================================
+  //  WEBGL — túnel de viagem: anéis, trilhos de luz e poeira
+  // ============================================================
+  var glApi = null;
+
+  function initGL() {
+    var canvas = document.getElementById('gl');
+    var gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'high-performance' });
+    if (!gl) { canvas.style.display = 'none'; return null; }
+
+    var small = window.innerWidth < 760;
+    var TAU = 6.28318;
+
+    // ============================================================
+    //  TÚNEL DE VIAGEM — anéis + trilhos de luz + poeira
+    //  (idêntico em mobile: nada depende de cursor)
+    // ============================================================
+    var Z_TOP = 78;
+    var Z_END = -(TOTAL - 1) * SP - 62;
+    var RING_STEP = 3.4;
+    var SEGS = small ? 40 : 56;
+    var RADIUS = 7.6;
+
+    var lineV = [], lineI = [];
+    function pushSeg(x1, y1, z1, x2, y2, z2, type, phase, rd, extra) {
+      lineV.push(x1, y1, z1, x2, y2, z2);
+      lineI.push(type, phase, rd, extra, type, phase, rd, extra);
+    }
+
+    // anéis — estrutura do túnel; estações em bronze a cada capítulo
+    (function () {
+      for (var z = Z_TOP; z >= Z_END; z -= RING_STEP) {
+        var si = Math.round(-z / SP);
+        var stationZ = -si * SP;
+        var isStation = si >= 0 && si < TOTAL && Math.abs(z - stationZ) < RING_STEP * 0.55;
+        var phase = Math.random();
+        var rr = RADIUS + Math.sin(z * 0.21) * 0.55;
+        var steel = (Math.abs(Math.round(z / RING_STEP)) % 9) === 4;
+        var extra = isStation ? 1 : (steel ? 2 : 0);
+        var gapOff = Math.floor(phase * 7);
+        for (var s = 0; s < SEGS; s++) {
+          if (!isStation && ((s + gapOff) % 11) < 2) continue; // arcos quebrados
+          var a1 = (s / SEGS) * TAU, a2 = ((s + 1) / SEGS) * TAU;
+          pushSeg(Math.cos(a1) * rr, Math.sin(a1) * rr, z, Math.cos(a2) * rr, Math.sin(a2) * rr, z, 0, phase, Math.random(), extra);
+        }
+      }
+    })();
+
+    // trilhos — traços longitudinais que carregam pulsos de luz
+    (function () {
+      var RAILS = small ? 20 : 30;
+      for (var r = 0; r < RAILS; r++) {
+        var ang = (r / RAILS) * TAU + (Math.random() - 0.5) * 0.12;
+        var rad = RADIUS + 0.5 + Math.random() * 1.2;
+        var phase = Math.random();
+        var x = Math.cos(ang) * rad, y = Math.sin(ang) * rad;
+        for (var z = Z_TOP; z >= Z_END; z -= 2.6) {
+          if (Math.random() < 0.42) continue;
+          var len = 1.1 + Math.random() * 0.9;
+          var rd = Math.random();
+          lineV.push(x, y, z, x, y, z - len);
+          lineI.push(1, phase, rd, 1, 1, phase, rd, -1);
+        }
+      }
+    })();
+
+    var LINE_COUNT = lineV.length / 3;
+
+    var TVS = [
+      'attribute vec3 aP;',
+      'attribute vec4 aI;', // type, phase, rand, extra (anel: 0 comum/1 estação/2 aço · trilho: ±1 ponta)
+      'uniform float uTime, uWarp, uCamZ, uAspect;',
+      'uniform vec2 uRot;',
+      'varying vec4 vCol;',
+      'vec2 curve(float z) { return vec2(sin(z * 0.045) * 3.0, cos(z * 0.038) * 1.8); }',
+      'void main() {',
+      '  vec3 p = aP;',
+      '  float isRail = step(0.5, aI.x);',
+      '  p.z += isRail * aI.w * uWarp * 2.8;', // speed-lines esticam no warp
+      '  float rollA = uTime * 0.05 + p.z * 0.012;', // rotação autônoma lenta
+      '  float cr = cos(rollA); float sr = sin(rollA);',
+      '  vec2 xy = vec2(cr * p.x - sr * p.y, sr * p.x + cr * p.y);',
+      '  vec2 off = curve(p.z) - curve(uCamZ);', // túnel serpenteia à frente
+      '  vec3 v = vec3(xy.x + off.x, xy.y + off.y, p.z - uCamZ);',
+      '  float cy = cos(uRot.x); float sy = sin(uRot.x);',
+      '  v = vec3(cy * v.x + sy * v.z, v.y, -sy * v.x + cy * v.z);',
+      '  float cx = cos(uRot.y); float sx = sin(uRot.y);',
+      '  v = vec3(v.x, cx * v.y - sx * v.z, sx * v.y + cx * v.z);',
+      '  float d = -v.z;',
+      '  float persp = (1.55 - uWarp * 0.18) / max(d, 0.3);',
+      '  gl_Position = d < 0.45 ? vec4(2.0, 2.0, 0.0, 1.0) : vec4(v.x * persp / uAspect, v.y * persp, 0.0, 1.0);',
+      '  float fog = smoothstep(0.8, 4.2, d) * smoothstep(66.0, 26.0, d);',
+      '  float flow = uTime * (2.2 + uWarp * 22.0);', // luz viaja em direção à câmera
+      '  float band = pow(0.5 + 0.5 * sin(p.z * 0.55 + aI.y * 6.2832 + flow), 8.0);',
+      '  vec3 porc = vec3(0.86, 0.85, 0.82);',
+      '  vec3 bron = vec3(0.84, 0.63, 0.40);',
+      '  vec3 stee = vec3(0.45, 0.55, 0.72);',
+      '  vec3 col; float base;',
+      '  if (aI.x < 0.5) {',
+      '    col = aI.w > 1.5 ? stee : (aI.w > 0.5 ? bron : porc);',
+      '    base = aI.w > 0.5 ? 0.36 : 0.15;',
+      '    col = mix(col, bron, band * 0.5);',
+      '  } else {',
+      '    col = mix(porc * 0.8, bron, band);',
+      '    base = 0.1;',
+      '  }',
+      '  float a = fog * (base + band * (0.45 + aI.z * 0.4)) * (1.0 + uWarp * 0.9);',
+      '  vCol = vec4(col, a);',
+      '}'
+    ].join('\n');
+
+    var TFS = [
+      'precision mediump float;',
+      'varying vec4 vCol;',
+      'void main() { gl_FragColor = vCol; }'
+    ].join('\n');
+
+    // poeira — flui pela câmera constantemente (sensação de viagem mesmo parado)
+    var DUST = small ? 420 : 900;
+    var DVS = [
+      'attribute vec3 aP;',
+      'attribute float aR;',
+      'uniform float uTime, uWarp, uAspect, uSize;',
+      'uniform vec2 uRot;',
+      'varying float vA;',
+      'varying vec3 vC;',
+      'void main() {',
+      '  float range = 60.0;',
+      '  float zRel = -mod(aP.z + uTime * (2.4 + uWarp * 30.0), range) - 0.6;',
+      '  vec3 v = vec3(aP.x, aP.y, zRel);',
+      '  float cy = cos(uRot.x); float sy = sin(uRot.x);',
+      '  v = vec3(cy * v.x + sy * v.z, v.y, -sy * v.x + cy * v.z);',
+      '  float cx = cos(uRot.y); float sx = sin(uRot.y);',
+      '  v = vec3(v.x, cx * v.y - sx * v.z, sx * v.y + cx * v.z);',
+      '  float d = -v.z;',
+      '  float persp = (1.55 - uWarp * 0.18) / max(d, 0.3);',
+      '  gl_Position = d < 0.45 ? vec4(2.0, 2.0, 0.0, 1.0) : vec4(v.x * persp / uAspect, v.y * persp, 0.0, 1.0);',
+      '  float fog = smoothstep(0.7, 3.2, d) * smoothstep(46.0, 18.0, d);',
+      '  vA = fog * (0.22 + 0.55 * aR);',
+      '  gl_PointSize = clamp(uSize * (10.0 / max(d, 0.5)), 0.0, 26.0);',
+      '  vC = mix(vec3(0.86, 0.85, 0.82), vec3(0.84, 0.63, 0.40), step(aR, 0.14));',
+      '}'
+    ].join('\n');
+
+    var DFS = [
+      'precision mediump float;',
+      'varying float vA;',
+      'varying vec3 vC;',
+      'void main() {',
+      '  float r = length(gl_PointCoord - vec2(0.5));',
+      '  float a = smoothstep(0.5, 0.08, r);',
+      '  gl_FragColor = vec4(vC, a * vA);',
+      '}'
+    ].join('\n');
+
+    function shader(type, src) {
+      var s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.error(gl.getShaderInfoLog(s)); return null; }
+      return s;
+    }
+    function makeProg(vsSrc, fsSrc) {
+      var vs = shader(gl.VERTEX_SHADER, vsSrc), fs = shader(gl.FRAGMENT_SHADER, fsSrc);
+      if (!vs || !fs) return null;
+      var pr = gl.createProgram();
+      gl.attachShader(pr, vs);
+      gl.attachShader(pr, fs);
+      gl.linkProgram(pr);
+      return pr;
+    }
+    var progT = makeProg(TVS, TFS);
+    var progD = makeProg(DVS, DFS);
+    if (!progT || !progD) { canvas.style.display = 'none'; return null; }
+
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+    gl.disable(gl.DEPTH_TEST);
+
+    function locsOf(pr, attrs, unis) {
+      var o = {};
+      attrs.forEach(function (n) { o[n] = gl.getAttribLocation(pr, n); });
+      unis.forEach(function (n) { o[n] = gl.getUniformLocation(pr, n); });
+      return o;
+    }
+    var locT = locsOf(progT, ['aP', 'aI'], ['uTime', 'uWarp', 'uCamZ', 'uAspect', 'uRot']);
+    var locD = locsOf(progD, ['aP', 'aR'], ['uTime', 'uWarp', 'uAspect', 'uSize', 'uRot']);
+
+    function setBuf(buf, arr) {
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, arr, gl.STATIC_DRAW);
+    }
+    var tBufP = gl.createBuffer(), tBufI = gl.createBuffer();
+    setBuf(tBufP, new Float32Array(lineV));
+    setBuf(tBufI, new Float32Array(lineI));
+    lineV = lineI = null;
+
+    var dustP = new Float32Array(DUST * 3), dustR = new Float32Array(DUST);
+    for (var di = 0; di < DUST; di++) {
+      var da = Math.random() * TAU;
+      var dr = Math.sqrt(Math.random()) * 6.2;
+      dustP[di * 3] = Math.cos(da) * dr;
+      dustP[di * 3 + 1] = Math.sin(da) * dr;
+      dustP[di * 3 + 2] = Math.random() * 60;
+      dustR[di] = Math.random();
+    }
+    var dBufP = gl.createBuffer(), dBufR = gl.createBuffer();
+    setBuf(dBufP, dustP);
+    setBuf(dBufR, dustR);
+
+    function bindAttr(locA, buf, size) {
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.enableVertexAttribArray(locA);
+      gl.vertexAttribPointer(locA, size, gl.FLOAT, false, 0, 0);
+    }
+    function disableAll() {
+      for (var i = 0; i < 8; i++) gl.disableVertexAttribArray(i);
+    }
+
+    var W = 0, H = 0, DPR = 1;
+    function resize() {
+      DPR = Math.min(1.75, window.devicePixelRatio || 1);
+      W = canvas.width = Math.round(window.innerWidth * DPR);
+      H = canvas.height = Math.round(window.innerHeight * DPR);
+      gl.viewport(0, 0, W, H);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    return {
+      draw: function (time) {
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        var t = REDUCE ? 0 : time;
+        var asp = W / Math.max(1, H);
+        // túnel
+        gl.useProgram(progT);
+        disableAll();
+        bindAttr(locT.aP, tBufP, 3);
+        bindAttr(locT.aI, tBufI, 4);
+        gl.uniform1f(locT.uTime, t);
+        gl.uniform1f(locT.uWarp, warpVal);
+        gl.uniform1f(locT.uCamZ, camZ);
+        gl.uniform1f(locT.uAspect, asp);
+        gl.uniform2f(locT.uRot, rotX, rotY);
+        gl.drawArrays(gl.LINES, 0, LINE_COUNT);
+        // poeira
+        gl.useProgram(progD);
+        disableAll();
+        bindAttr(locD.aP, dBufP, 3);
+        bindAttr(locD.aR, dBufR, 1);
+        gl.uniform1f(locD.uTime, t);
+        gl.uniform1f(locD.uWarp, warpVal);
+        gl.uniform1f(locD.uAspect, asp);
+        gl.uniform1f(locD.uSize, H * 0.0035);
+        gl.uniform2f(locD.uRot, rotX, rotY);
+        gl.drawArrays(gl.POINTS, 0, DUST);
+      }
+    };
+  }
+
+  // Túnel WebGL desativado (legibilidade). Para reativar: restaurar <canvas id="gl"> e chamar initGL().
+  glApi = null;
+
+  // ============================================================
+  //  RENDER LOOP
+  // ============================================================
+  function loop(now) {
+    raf = requestAnimationFrame(loop);
+    var targetRX = mouseX * 0.055, targetRY = mouseY * 0.045;
+    rotX += (targetRX - rotX) * 0.045;
+    rotY += (targetRY - rotY) * 0.045;
+    if (glApi) glApi.draw(now * 0.001);
+  }
+  requestAnimationFrame(loop);
+
+  // ============================================================
+  //  CONTEÚDO — stagger in/out
+  // ============================================================
+  function applyIn(sec, p) {
+    sec._els.forEach(function (el, i) {
+      var d = parseFloat(el.getAttribute('data-d')) || 0;
+      var amp = parseFloat(el.getAttribute('data-amp')) || 1;
+      var local = clamp01(p * 1.45 - d * 0.1);
+      var e = easeOut5(local);
+      el.style.opacity = e.toFixed(3);
+      el.style.transform = 'translateY(' + (48 * amp * (1 - e)).toFixed(1) + 'px)';
+      el.style.filter = e > 0.98 ? 'none' : 'blur(' + (7 * (1 - e)).toFixed(1) + 'px)';
+    });
+  }
+
+  function applyOut(sec, p) {
+    sec._els.forEach(function (el) {
+      var amp = parseFloat(el.getAttribute('data-amp')) || 1;
+      var e = p * p;
+      el.style.opacity = (1 - e).toFixed(3);
+      el.style.transform = 'translateY(' + (-40 * amp * e).toFixed(1) + 'px)';
+      el.style.filter = e < 0.02 ? 'none' : 'blur(' + (6 * e).toFixed(1) + 'px)';
+    });
+  }
+
+  function setVisible(sec, on) {
+    sec.style.visibility = on ? 'visible' : 'hidden';
+    sec.setAttribute('aria-hidden', on ? 'false' : 'true');
+  }
+
+  // ============================================================
+  //  CHROME — rail, contador, cue
+  // ============================================================
+  var railItems = Array.prototype.slice.call(document.querySelectorAll('.rail-item'));
+  var railSub = document.getElementById('rail-sub');
+  var counterEl = document.getElementById('counter');
+  var counterSub = document.getElementById('counter-sub');
+  var cue = document.getElementById('cue');
+
+  function updateChrome() {
+    var sec = SECTIONS[cur];
+    var ch = sec.getAttribute('data-ch');
+    var sub = sec.getAttribute('data-sub');
+    counterEl.textContent = ch;
+    counterSub.textContent = sub ? ' · ' + sub + '/5' : '';
+    railItems.forEach(function (it) {
+      var target = parseInt(it.getAttribute('data-goto'), 10);
+      var tch = SECTIONS[target].getAttribute('data-ch');
+      var active = tch === ch;
+      var idx = it.querySelector('.rail-idx');
+      var lab = it.querySelector('.rail-label');
+      if (idx) idx.style.color = active ? 'var(--accent)' : 'var(--dim)';
+      if (lab) {
+        lab.style.color = active ? 'var(--fg)' : 'var(--dim)';
+        lab.style.letterSpacing = active ? '3px' : '2px';
+      }
+    });
+    if (railSub) {
+      railSub.textContent = sub ? sub + '/5' : '';
+      railSub.style.opacity = sub ? '1' : '0';
+    }
+    cue.style.opacity = cur >= TOTAL - 1 ? '0' : '1';
+  }
+
+  // ============================================================
+  //  TRANSIÇÃO ENTRE PARADAS
+  // ============================================================
+  function goTo(n, jump) {
+    n = Math.max(0, Math.min(TOTAL - 1, n));
+    if (n === cur || locked) return;
+    locked = true;
+    var from = cur, to = n;
+    var secA = SECTIONS[from], secB = SECTIONS[to];
+    var zA = secA._z, zB = secB._z;
+    var dist = Math.abs(to - from);
+    var dur = REDUCE ? 240 : 900;
+    var warpMax = REDUCE ? 0 : Math.min(2.1, 0.85 + dist * 0.35);
+    mixVal = 0;
+    setVisible(secB, true);
+    applyIn(secB, 0);
+    var t0 = performance.now();
+    cur = to;
+    updateChrome();
+
+    function frame(now) {
+      var p = clamp01((now - t0) / dur);
+      var e = ease5(p);
+      camZ = zA + (zB - zA) * e;
+      mixVal = e;
+      var w = Math.sin(p * Math.PI);
+      warpVal = w * w * warpMax;
+      applyOut(secA, clamp01(p / 0.42));
+      if (p >= 0.42) setVisible(secA, false);
+      applyIn(secB, clamp01((p - 0.42) / 0.58));
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        warpVal = 0;
+        mixVal = 1;
+        camZ = zB;
+        setVisible(secA, false);
+        applyIn(secB, 1);
+        setTimeout(function () { locked = false; }, 60);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ============================================================
+  //  ENTRADA CINEMATOGRÁFICA
+  // ============================================================
+  var veil = document.getElementById('veil');
+  var letters = Array.prototype.slice.call(document.querySelectorAll('#name .kn'));
+
+  function entrance() {
+    setVisible(SECTIONS[0], true);
+    updateChrome();
+    if (REDUCE) {
+      veil.style.display = 'none';
+      letters.forEach(function (el) { el.style.transform = 'none'; });
+      applyIn(SECTIONS[0], 1);
+      camZ = 0;
+      locked = false;
+      return;
+    }
+    letters.forEach(function (el) {
+      el.style.transform = 'translateY(118%) rotate(9deg)';
+    });
+    var t0 = performance.now(), dur = 2100, lettersFired = false;
+    camZ = 46;
+    warpVal = 1.9;
+
+    function frame(now) {
+      var p = clamp01((now - t0) / dur);
+      var e = easeOut5(p);
+      camZ = 46 * (1 - e);
+      warpVal = Math.pow(1 - p, 2) * 1.9;
+      veil.style.opacity = p < 0.12 ? '1' : String(Math.max(0, 1 - (p - 0.12) / 0.4));
+      if (p > 0.28 && !lettersFired) {
+        lettersFired = true;
+        letters.forEach(function (el, i) {
+          el.style.transition = 'transform 1.05s cubic-bezier(.19, 1, .22, 1) ' + (i * 42) + 'ms';
+          el.style.transform = 'none';
+        });
+      }
+      applyIn(SECTIONS[0], clamp01((p - 0.45) / 0.55));
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        veil.style.display = 'none';
+        warpVal = 0;
+        camZ = 0;
+        locked = false;
+        setTimeout(function () {
+          letters.forEach(function (el) { el.style.transition = 'none'; });
+        }, 1700);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ============================================================
+  //  INPUTS — wheel, touch, teclado, rail
+  // ============================================================
+  var acc = 0, lastWheel = 0;
+  window.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    if (locked) return;
+    var now = performance.now();
+    if (now - lastWheel > 200) acc = 0;
+    lastWheel = now;
+    acc += e.deltaY;
+    if (Math.abs(acc) > 70) {
+      goTo(cur + (acc > 0 ? 1 : -1));
+      acc = 0;
+    }
+  }, { passive: false });
+
+  var touchY = null, touchX = null;
+  window.addEventListener('touchstart', function (e) {
+    if (e.touches.length === 1) { touchY = e.touches[0].clientY; touchX = e.touches[0].clientX; }
+  }, { passive: true });
+  window.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+  window.addEventListener('touchend', function (e) {
+    if (touchY == null || locked) { touchY = null; return; }
+    var dy = touchY - e.changedTouches[0].clientY;
+    var dx = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(dy) > 48 && Math.abs(dy) > Math.abs(dx)) goTo(cur + (dy > 0 ? 1 : -1));
+    touchY = null;
+  }, { passive: true });
+
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); goTo(cur + 1); }
+    else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); goTo(cur - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0, true); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(TOTAL - 1, true); }
+  });
+
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target.closest('[data-goto]') : null;
+    if (!t) return;
+    e.preventDefault();
+    goTo(parseInt(t.getAttribute('data-goto'), 10), true);
+  });
+
+  // ============================================================
+  //  MOUSE FX — parallax, kinetic name, magnetic, tilt, cursor
+  // ============================================================
+  window.addEventListener('mousemove', function (e) {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    mHas = true;
+  }, { passive: true });
+
+  // nome vivo (peso variável perto do cursor)
+  if (!REDUCE && FINE) {
+    var knPending = false;
+    window.addEventListener('mousemove', function (e) {
+      if (knPending || locked) return;
+      knPending = true;
+      requestAnimationFrame(function () {
+        knPending = false;
+        if (cur !== 0) return;
+        letters.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          var cx = r.left + r.width / 2, cy2 = r.top + r.height / 2;
+          var d = Math.hypot(e.clientX - cx, e.clientY - cy2);
+          var t = Math.max(0, 1 - d / 320);
+          t = t * t;
+          el.style.fontVariationSettings = "'wght' " + Math.round(780 + 120 * t);
+          el.style.transform = 'translateY(' + (-9 * t).toFixed(1) + 'px)';
+          el.style.textShadow = t > 0.05 ? '0 0 ' + Math.round(30 * t) + 'px rgba(201, 165, 117, ' + (0.45 * t).toFixed(2) + ')' : 'none';
+        });
+      });
+    }, { passive: true });
+  }
+
+  // parallax do numeral gigante
+  if (!REDUCE && FINE) {
+    var numerals = Array.prototype.slice.call(document.querySelectorAll('.ch-num'));
+    var numPending = false;
+    window.addEventListener('mousemove', function () {
+      if (numPending) return;
+      numPending = true;
+      requestAnimationFrame(function () {
+        numPending = false;
+        numerals.forEach(function (el) {
+          if (el.style.opacity === '0') return;
+          el.style.marginRight = (mouseX * -14).toFixed(1) + 'px';
+          el.style.marginTop = 'calc(-0.5em + ' + (mouseY * -10).toFixed(1) + 'px)';
+        });
+      });
+    }, { passive: true });
+  }
+
+  // magnético
+  if (!REDUCE && FINE) {
+    var mags = Array.prototype.slice.call(document.querySelectorAll('[data-mag]'));
+    var magPending = false;
+    window.addEventListener('mousemove', function (e) {
+      if (magPending) return;
+      magPending = true;
+      requestAnimationFrame(function () {
+        magPending = false;
+        mags.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (!r.width) return;
+          var cx = r.left + r.width / 2, cy2 = r.top + r.height / 2;
+          var dx = e.clientX - cx, dy = e.clientY - cy2;
+          var d = Math.hypot(dx, dy);
+          var radius = Math.max(r.width, r.height) / 2 + 50;
+          if (d < radius) {
+            var f = (1 - d / radius) * 0.32;
+            el.style.transform = 'translate(' + (dx * f).toFixed(1) + 'px, ' + (dy * f).toFixed(1) + 'px)';
+          } else if (el.style.transform) {
+            el.style.transform = 'translate(0px, 0px)';
+          }
+        });
+      });
+    }, { passive: true });
+  }
+
+  // tilt da foto
+  if (!REDUCE && FINE) {
+    var wrap = document.getElementById('photo-wrap');
+    if (wrap) {
+      wrap.addEventListener('mousemove', function (e) {
+        var r = wrap.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        wrap.style.transform = 'rotateY(' + (px * 10).toFixed(1) + 'deg) rotateX(' + (-py * 10).toFixed(1) + 'deg)';
+      });
+      wrap.addEventListener('mouseleave', function () {
+        wrap.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
     }
   }
 
-  setLang(lang, instant) {
-    var self = this;
-    this._lang = lang;
-    try { localStorage.setItem('ec_lang', lang); } catch (e) {}
-    Array.prototype.forEach.call(document.querySelectorAll('[data-pt]'), function (el) {
-      var txt = lang === 'pt' ? el.getAttribute('data-pt') : el.getAttribute('data-en');
-      if (txt == null) return;
-      if (!instant && el.hasAttribute('data-scramble')) {
-        el.setAttribute('data-final', txt);
-        self.scramble(el);
-      } else {
-        el.textContent = txt;
-        if (el.hasAttribute('data-final') || el.hasAttribute('data-scramble')) el.setAttribute('data-final', txt);
-      }
-    });
-    Array.prototype.forEach.call(document.querySelectorAll('[data-lang-en]'), function (el) {
-      el.style.display = lang === 'pt' ? 'none' : '';
-    });
-    Array.prototype.forEach.call(document.querySelectorAll('[data-lang-pt]'), function (el) {
-      el.style.display = lang === 'pt' ? '' : 'none';
-    });
-    var en = document.getElementById('lang-en'), pt = document.getElementById('lang-pt');
-    if (en) en.style.color = lang === 'en' ? 'var(--accent)' : '#6f6f68';
-    if (pt) pt.style.color = lang === 'pt' ? 'var(--accent)' : '#6f6f68';
-  }
-
-  // ---------- print ----------
-  initPrint() {
-    var handler = function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('[data-print]') : null;
-      if (!t) return;
-      e.preventDefault();
-      window.print();
-    };
-    document.addEventListener('click', handler);
-    this._cleanup.push(function () { document.removeEventListener('click', handler); });
-  }
-
-  // ---------- responsive grids ----------
-  initResponsive() {
-    var root = this._root;
-    var mq = window.matchMedia('(max-width: 780px)');
-    var apply = function () {
-      Array.prototype.forEach.call(root.querySelectorAll('[data-cols]'), function (el) {
-        el.style.gridTemplateColumns = mq.matches ? '1fr' : el.getAttribute('data-cols');
-      });
-    };
-    apply();
-    mq.addEventListener('change', apply);
-    this._cleanup.push(function () { mq.removeEventListener('change', apply); });
-  }
-
-  // ---------- scramble / decrypt ----------
-  scramble(el) {
-    var glyphs = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&/<>[]{}';
-    var final = el.getAttribute('data-final') || el.textContent;
-    el.setAttribute('data-final', final);
-    if (this._reduce) { el.textContent = final; return; }
-    var n = final.length, start = performance.now(), dur = 220 + n * 42;
-    var tick = function (now) {
-      var pr = Math.min(1, (now - start) / dur), rev = pr * n, s = '';
-      for (var i = 0; i < n; i++) {
-        var c = final[i];
-        if (c === ' ' || c === '—' || c === '·') s += c;
-        else if (i < rev - 0.5) s += c;
-        else s += glyphs[(Math.random() * glyphs.length) | 0];
-      }
-      el.textContent = s;
-      if (pr < 1) requestAnimationFrame(tick); else el.textContent = final;
-    };
-    requestAnimationFrame(tick);
-  }
-
-  countUp(el) {
-    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-    if (this._reduce) { el.textContent = target; return; }
-    var start = performance.now(), dur = 1200;
-    var tick = function (now) {
-      var pr = Math.min(1, (now - start) / dur), e = 1 - Math.pow(1 - pr, 3);
-      el.textContent = Math.round(e * target);
-      if (pr < 1) requestAnimationFrame(tick); else el.textContent = target;
-    };
-    requestAnimationFrame(tick);
-  }
-
-  // ---------- reveals ----------
-  initReveals() {
-    var self = this;
-    var els = Array.prototype.slice.call(this._root.querySelectorAll('[data-reveal]'));
-    Array.prototype.forEach.call(this._root.querySelectorAll('[data-scramble]'), function (el) {
-      if (!el.getAttribute('data-final')) el.setAttribute('data-final', el.textContent);
-    });
-    els.forEach(function (el) {
-      var d = parseInt(el.getAttribute('data-delay'), 10) || 0;
-      el.style.transition = 'opacity 1s cubic-bezier(.16,1,.3,1) ' + d + 'ms, transform 1s cubic-bezier(.16,1,.3,1) ' + d + 'ms, clip-path 1s cubic-bezier(.16,1,.3,1) ' + d + 'ms';
-      if (self._reduce) return;
-      el.style.opacity = '0';
-      if (el.hasAttribute('data-wipe')) el.style.clipPath = 'inset(0 100% 0 0)';
-      else el.style.transform = 'translateY(34px)';
-    });
-    if (this._reduce) return;
-    var pending = els.slice();
-    var revealEl = function (el) {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-      if (el.hasAttribute('data-wipe')) el.style.clipPath = 'inset(0 0 0 0)';
-      Array.prototype.forEach.call(el.querySelectorAll('[data-scramble]'), function (s) { self.scramble(s); });
-      if (el.hasAttribute('data-scramble')) self.scramble(el);
-      Array.prototype.forEach.call(el.querySelectorAll('[data-count]'), function (c) { self.countUp(c); });
-    };
-    var check = function () {
-      if (!pending.length) return;
-      var vh = window.innerHeight;
-      pending = pending.filter(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.height === 0) return true;
-        if (r.top < vh * 0.92 && r.bottom > 0) { revealEl(el); return false; }
-        return true;
-      });
-    };
-    var ticking = false;
-    var onScroll = function () {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () { ticking = false; check(); });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    var iv = setInterval(function () {
-      check();
-      if (!pending.length) clearInterval(iv);
-    }, 400);
-    this._timers.push(iv);
-    check();
-    this._cleanup.push(function () {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    });
-  }
-
-  // ---------- scroll: progress + parallax ----------
-  initScrollFx() {
-    var self = this;
-    var bar = document.getElementById('progress');
-    var plx = Array.prototype.slice.call(this._root.querySelectorAll('[data-plx]'));
-    var ticking = false;
-    var update = function () {
-      ticking = false;
-      var doc = document.documentElement;
-      var max = doc.scrollHeight - window.innerHeight;
-      if (bar) bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-      if (self._reduce) return;
-      plx.forEach(function (el) {
-        var sp = parseFloat(el.getAttribute('data-plx')) || 0.1;
-        var r = el.getBoundingClientRect();
-        var off = (r.top + r.height / 2 - window.innerHeight / 2) * sp;
-        el.style.transform = 'translateY(' + off.toFixed(1) + 'px)';
-      });
-    };
-    var onScroll = function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    update();
-    this._cleanup.push(function () {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    });
-  }
-
-  // ---------- particles ----------
-  initParticles() {
-    var self = this;
-    var c = document.getElementById('pfield');
-    if (!c || !c.getContext) return;
-    var ctx = c.getContext('2d');
-    var w = 0, h = 0, dpr = 1, pts = [], raf = 0;
-    var rnd = function (a, b) { return a + Math.random() * (b - a); };
-    var build = function () {
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      w = c.width = Math.round(window.innerWidth * dpr);
-      h = c.height = Math.round(window.innerHeight * dpr);
-      var count = Math.min(100, Math.round((window.innerWidth * window.innerHeight) / 16000));
-      pts = [];
-      for (var i = 0; i < count; i++) {
-        pts.push({ x: Math.random() * w, y: Math.random() * h, vx: rnd(-0.16, 0.16) * dpr, vy: rnd(-0.16, 0.16) * dpr });
-      }
-    };
-    var hexA = function (hex, a) {
-      var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
-      return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
-    };
-    var draw = function () {
-      raf = requestAnimationFrame(draw);
-      if (!self._particlesOn) { ctx.clearRect(0, 0, w, h); return; }
-      ctx.clearRect(0, 0, w, h);
-      var mx = self._mx * dpr, my = (self._my + window.scrollY * 0) * dpr;
-      var LD = 120 * dpr;
-      for (var i = 0; i < pts.length; i++) {
-        var p = pts[i];
-        var dx = p.x - mx, dy = p.y - my;
-        var d = Math.hypot(dx, dy);
-        if (d < 160 * dpr && d > 0.01) {
-          var f = (1 - d / (160 * dpr)) * 0.9;
-          p.vx += (dx / d) * f;
-          p.vy += (dy / d) * f;
-        }
-        p.vx *= 0.985; p.vy *= 0.985;
-        var sp = Math.hypot(p.vx, p.vy);
-        if (sp < 0.05 * dpr) { p.vx += rnd(-0.05, 0.05) * dpr; p.vy += rnd(-0.05, 0.05) * dpr; }
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) { p.x = 0; p.vx *= -1; } if (p.x > w) { p.x = w; p.vx *= -1; }
-        if (p.y < 0) { p.y = 0; p.vy *= -1; } if (p.y > h) { p.y = h; p.vy *= -1; }
-      }
-      for (var a = 0; a < pts.length; a++) {
-        for (var b = a + 1; b < pts.length; b++) {
-          var A = pts[a], B = pts[b];
-          var ddx = A.x - B.x, ddy = A.y - B.y;
-          if (Math.abs(ddx) > LD || Math.abs(ddy) > LD) continue;
-          var dd = Math.hypot(ddx, ddy);
-          if (dd < LD) {
-            ctx.strokeStyle = 'rgba(237,237,234,' + ((1 - dd / LD) * 0.11).toFixed(3) + ')';
-            ctx.lineWidth = dpr * 0.7;
-            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
-          }
-        }
-      }
-      var ac = self._accent || '#54e0a3';
-      for (var m = 0; m < pts.length; m++) {
-        var q = pts[m];
-        var md = Math.hypot(q.x - mx, q.y - my);
-        if (md < 200 * dpr) {
-          ctx.fillStyle = hexA(ac, 0.85);
-          ctx.shadowColor = ac; ctx.shadowBlur = 6 * dpr;
-        } else {
-          ctx.fillStyle = 'rgba(237,237,234,0.4)';
-          ctx.shadowBlur = 0;
-        }
-        ctx.beginPath(); ctx.arc(q.x, q.y, 1.4 * dpr, 0, 7); ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-    };
-    build();
-    if (!this._reduce) draw(); else { /* static frame */ draw(); cancelAnimationFrame(raf); }
-    var onResize = function () { build(); };
-    var onMove = function (e) { self._mx = e.clientX; self._my = e.clientY; };
-    var onClick = function (e) {
-      if (self._reduce) return;
-      var cx = e.clientX * dpr, cy = e.clientY * dpr;
-      pts.forEach(function (p) {
-        var dx = p.x - cx, dy = p.y - cy;
-        var d = Math.hypot(dx, dy) || 1;
-        if (d < 320 * dpr) {
-          var f = (1 - d / (320 * dpr)) * 9;
-          p.vx += (dx / d) * f; p.vy += (dy / d) * f;
-        }
-      });
-    };
-    window.addEventListener('resize', onResize);
-    window.addEventListener('mousemove', onMove, { passive: true });
-    window.addEventListener('click', onClick);
-    this._cleanup.push(function () {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('resize', onResize);
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('click', onClick);
-    });
-  }
-
-  // ---------- custom cursor ----------
-  initCursor() {
-    if (this._reduce || !window.matchMedia('(pointer: fine)').matches) return;
-    var ring = document.getElementById('ec-cursor');
-    var dot = document.getElementById('ec-cursor-dot');
-    if (!ring || !dot) return;
-    ring.style.display = 'block'; dot.style.display = 'block';
-    var root = this._root;
-    root.style.cursor = 'none';
-    Array.prototype.forEach.call(root.querySelectorAll('a, button'), function (el) { el.style.cursor = 'none'; });
-    var tx = -100, ty = -100, rx = -100, ry = -100, raf = 0, hover = false;
-    var onMove = function (e) {
+  // cursor custom
+  if (!REDUCE && FINE) {
+    var ring = document.getElementById('cursor-ring');
+    var dot = document.getElementById('cursor-dot');
+    ring.style.display = 'block';
+    dot.style.display = 'block';
+    document.body.style.cursor = 'none';
+    Array.prototype.forEach.call(document.querySelectorAll('a, button'), function (el) { el.style.cursor = 'none'; });
+    var tx = -100, ty = -100, rx2 = -100, ry2 = -100, hover = false;
+    window.addEventListener('mousemove', function (e) {
       tx = e.clientX; ty = e.clientY;
-      dot.style.transform = 'translate(' + (tx - 2.5) + 'px,' + (ty - 2.5) + 'px)';
-      var t = e.target;
-      var isLink = t && t.closest && t.closest('a, button');
+      dot.style.transform = 'translate(' + (tx - 2) + 'px, ' + (ty - 2) + 'px)';
+      var isLink = e.target && e.target.closest && e.target.closest('a, button');
       if (!!isLink !== hover) {
         hover = !!isLink;
-        ring.style.width = hover ? '52px' : '32px';
-        ring.style.height = hover ? '52px' : '32px';
+        ring.style.width = hover ? '48px' : '30px';
+        ring.style.height = hover ? '48px' : '30px';
       }
-    };
-    var loop = function () {
-      raf = requestAnimationFrame(loop);
-      rx += (tx - rx) * 0.16; ry += (ty - ry) * 0.16;
-      var half = hover ? 26 : 16;
-      ring.style.transform = 'translate(' + (rx - half) + 'px,' + (ry - half) + 'px)';
-    };
-    loop();
-    window.addEventListener('mousemove', onMove, { passive: true });
-    this._cleanup.push(function () {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('mousemove', onMove);
-      root.style.cursor = '';
-    });
+    }, { passive: true });
+    (function cursorLoop() {
+      requestAnimationFrame(cursorLoop);
+      rx2 += (tx - rx2) * 0.17;
+      ry2 += (ty - ry2) * 0.17;
+      var half = hover ? 24 : 15;
+      ring.style.transform = 'translate(' + (rx2 - half) + 'px, ' + (ry2 - half) + 'px)';
+    })();
   }
 
-  // ---------- kinetic name ----------
-  initKinetic() {
-    if (this._reduce) return;
-    var self = this;
-    var name = document.getElementById('kname');
-    if (!name) return;
-    var letters = Array.prototype.slice.call(name.querySelectorAll('[data-kin]'));
-    if (!letters.length) return;
-    var raf = 0, pending = false;
-    var update = function () {
-      pending = false;
-      letters.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-        var d = Math.hypot(self._mx - cx, self._my - cy);
-        var t = Math.max(0, 1 - d / 300);
-        t = t * t;
-        el.style.fontVariationSettings = "'wght' " + Math.round(430 + 270 * t);
-        el.style.transform = 'translateY(' + (-12 * t).toFixed(1) + 'px)';
-        el.style.textShadow = t > 0.05 ? '0 0 ' + Math.round(26 * t) + 'px ' + self.hexAlpha(self._accent, 0.55 * t) : 'none';
-      });
-    };
-    var onMove = function () {
-      if (!pending) { pending = true; raf = requestAnimationFrame(update); }
-    };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    window.addEventListener('scroll', onMove, { passive: true });
-    this._cleanup.push(function () {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('scroll', onMove);
-    });
-  }
+  // ============================================================
+  //  BOOT
+  // ============================================================
+  initLang();
+  updateChrome();
 
-  hexAlpha(hex, a) {
-    var h = hex || '#54e0a3';
-    var r = parseInt(h.slice(1, 3), 16), g = parseInt(h.slice(3, 5), 16), b = parseInt(h.slice(5, 7), 16);
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + a.toFixed(2) + ')';
-  }
+  // hash direto (#contato etc.)
+  var hashMap = { inicio: 0, perfil: 1, trajetoria: 2, stack: 7, formacao: 8, contato: 9 };
+  var startAt = hashMap[(location.hash || '').replace('#', '')] || 0;
 
-  // ---------- photo tilt ----------
-  initTilt() {
-    if (this._reduce) return;
-    var wrap = document.getElementById('photo-wrap');
-    if (!wrap) return;
-    var onMove = function (e) {
-      var r = wrap.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width - 0.5;
-      var py = (e.clientY - r.top) / r.height - 0.5;
-      wrap.style.transform = 'rotateY(' + (px * 14).toFixed(1) + 'deg) rotateX(' + (-py * 14).toFixed(1) + 'deg)';
-    };
-    var onLeave = function () { wrap.style.transform = 'rotateY(0) rotateX(0)'; };
-    wrap.addEventListener('mousemove', onMove);
-    wrap.addEventListener('mouseleave', onLeave);
-    this._cleanup.push(function () {
-      wrap.removeEventListener('mousemove', onMove);
-      wrap.removeEventListener('mouseleave', onLeave);
-    });
+  entrance();
+  if (startAt !== 0) {
+    setTimeout(function () { goTo(startAt, true); }, REDUCE ? 100 : 2300);
   }
-
-  // ---------- magnetic elements ----------
-  initMagnetic() {
-    if (this._reduce) return;
-    var self = this;
-    var mags = Array.prototype.slice.call(this._root.querySelectorAll('[data-mag]'));
-    if (!mags.length) return;
-    var raf = 0, pending = false;
-    var update = function () {
-      pending = false;
-      mags.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-        var dx = self._mx - cx, dy = self._my - cy;
-        var d = Math.hypot(dx, dy);
-        var radius = Math.max(r.width, r.height) / 2 + 60;
-        if (d < radius) {
-          var f = (1 - d / radius) * 0.35;
-          el.style.transform = 'translate(' + (dx * f).toFixed(1) + 'px,' + (dy * f).toFixed(1) + 'px)';
-        } else if (el.style.transform) {
-          el.style.transform = 'translate(0px, 0px)';
-        }
-      });
-    };
-    var onMove = function () {
-      if (!pending) { pending = true; raf = requestAnimationFrame(update); }
-    };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    this._cleanup.push(function () {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('mousemove', onMove);
-    });
-  }
-
-  // ---------- periodic glitch bursts ----------
-  initGlitchLoop() {
-    if (this._reduce) return;
-    var self = this;
-    var glyphs = '#%&/<>[]{}01';
-    var els = Array.prototype.slice.call(this._root.querySelectorAll('[data-glitch]'));
-    if (!els.length) return;
-    var burst = function () {
-      var el = els[(Math.random() * els.length) | 0];
-      var orig = el.textContent;
-      var frames = 5;
-      var iv = setInterval(function () {
-        frames--;
-        if (frames <= 0) {
-          clearInterval(iv);
-          el.textContent = orig;
-          el.style.textShadow = 'none';
-          el.style.transform = 'none';
-          return;
-        }
-        var chars = orig.split('');
-        for (var k = 0; k < 2; k++) {
-          var idx = (Math.random() * chars.length) | 0;
-          if (chars[idx] !== ' ') chars[idx] = glyphs[(Math.random() * glyphs.length) | 0];
-        }
-        el.textContent = chars.join('');
-        el.style.textShadow = '2px 0 ' + (self._accent || '#54e0a3') + ', -2px 0 #ff3b6b';
-        el.style.transform = 'translate(' + ((Math.random() * 5 - 2.5) | 0) + 'px,' + ((Math.random() * 3 - 1.5) | 0) + 'px) skewX(' + ((Math.random() * 5 - 2.5) | 0) + 'deg)';
-      }, 42);
-      self._timers.push(iv);
-      var t = setTimeout(burst, 2600 + Math.random() * 4200);
-      self._timers.push(t);
-    };
-    var t0 = setTimeout(burst, 2400);
-    this._timers.push(t0);
-  }
-
-  // ---------- mouse spotlight ----------
-  initSpotlight() {
-    if (this._reduce || !window.matchMedia('(pointer: fine)').matches) return;
-    var self = this;
-    var spot = document.getElementById('spot');
-    if (!spot) return;
-    var raf = 0, pending = false;
-    var update = function () {
-      pending = false;
-      spot.style.opacity = '1';
-      spot.style.background = 'radial-gradient(560px circle at ' + self._mx + 'px ' + self._my + 'px, ' + self.hexAlpha(self._accent, 0.055) + ' 0%, transparent 70%)';
-    };
-    var onMove = function () {
-      if (!pending) { pending = true; raf = requestAnimationFrame(update); }
-    };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    this._cleanup.push(function () {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('mousemove', onMove);
-    });
-  }
-
-  // ---------- click shockwave rings ----------
-  initShockwave() {
-    if (this._reduce) return;
-    var self = this;
-    var onClick = function (e) {
-      for (var i = 0; i < 2; i++) {
-        var ring = document.createElement('div');
-        var size = 220 + i * 190;
-        ring.style.cssText = 'position: fixed; left: ' + e.clientX + 'px; top: ' + e.clientY + 'px; width: ' + size + 'px; height: ' + size + 'px; border: 1px solid ' + self.hexAlpha(self._accent, 0.7 - i * 0.3) + '; border-radius: 50%; z-index: 94; pointer-events: none; animation: ec-shock ' + (0.55 + i * 0.2) + 's cubic-bezier(.16,1,.3,1) forwards;';
-        document.body.appendChild(ring);
-        (function (r) { setTimeout(function () { r.remove(); }, 900); })(ring);
-      }
-    };
-    window.addEventListener('click', onClick);
-    this._cleanup.push(function () { window.removeEventListener('click', onClick); });
-  }
-
-  // ---------- scroll velocity: hero exit, name skew, marquee turbo ----------
-  initVelocity() {
-    if (this._reduce) return;
-    var self = this;
-    var hero = document.getElementById('top');
-    var name = document.getElementById('kname');
-    var marquees = Array.prototype.slice.call(this._root.querySelectorAll('[data-marquee]'));
-    var lastY = window.scrollY, vel = 0, raf = 0;
-    if (hero) hero.style.willChange = 'transform, opacity, filter';
-    var loop = function () {
-      raf = requestAnimationFrame(loop);
-      var y = window.scrollY;
-      vel += ((y - lastY) - vel) * 0.12;
-      lastY = y;
-      var v = Math.max(-40, Math.min(40, vel));
-      // hero cinematic exit
-      if (hero) {
-        var vh = window.innerHeight;
-        var pr = Math.min(1, y / (vh * 0.95));
-        hero.style.transform = 'translateY(' + (y * 0.3).toFixed(1) + 'px) scale(' + (1 - pr * 0.06).toFixed(3) + ')';
-        hero.style.opacity = (1 - pr * 1.05).toFixed(2);
-        hero.style.filter = pr > 0.02 ? 'blur(' + (pr * 5).toFixed(1) + 'px)' : 'none';
-      }
-      // name skew + chromatic split with speed
-      if (name) {
-        var k = v * 0.16;
-        name.style.transform = 'skewY(' + k.toFixed(2) + 'deg)';
-        var av = Math.abs(v);
-        name.style.textShadow = av > 6
-          ? (av * 0.08).toFixed(1) + 'px 0 ' + self.hexAlpha(self._accent, Math.min(0.5, av * 0.012)) + ', -' + (av * 0.08).toFixed(1) + 'px 0 rgba(255,59,107,' + Math.min(0.5, av * 0.012).toFixed(2) + ')'
-          : 'none';
-      }
-      // marquee turbo
-      marquees.forEach(function (m) {
-        var anims = m.getAnimations ? m.getAnimations() : [];
-        if (anims[0]) anims[0].playbackRate = 1 + Math.min(7, Math.abs(v) * 0.22);
-      });
-    };
-    loop();
-    this._cleanup.push(function () {
-      cancelAnimationFrame(raf);
-      if (hero) { hero.style.transform = ''; hero.style.opacity = ''; hero.style.filter = ''; }
-      if (name) { name.style.transform = ''; name.style.textShadow = ''; }
-    });
-  }
-
-  // ---------- re-decrypt on hover ----------
-  initHoverScramble() {
-    if (this._reduce) return;
-    var self = this;
-    var busy = new WeakSet();
-    var onOver = function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('[data-scramble], h3') : null;
-      if (!t || busy.has(t)) return;
-      if (t.tagName === 'H3' && !t.hasAttribute('data-final')) t.setAttribute('data-final', t.textContent);
-      busy.add(t);
-      self.scramble(t);
-      setTimeout(function () { busy.delete(t); }, 900);
-    };
-    this._root.addEventListener('mouseover', onOver);
-    var root = this._root;
-    this._cleanup.push(function () { root.removeEventListener('mouseover', onOver); });
-  }
-
-  // ---------- boot intro ----------
-  initBoot() {
-    var self = this;
-    var boot = document.getElementById('boot');
-    if (!boot) return;
-    var shown = false;
-    try { shown = sessionStorage.getItem('ec_boot') === '1'; } catch (e) {}
-    if (this._reduce || shown) { boot.remove(); return; }
-    try { sessionStorage.setItem('ec_boot', '1'); } catch (e) {}
-    var nameEl = document.getElementById('boot-name');
-    var bar = document.getElementById('boot-bar');
-    var sub = document.getElementById('boot-sub');
-    boot.style.opacity = '1';
-    boot.style.pointerEvents = 'auto';
-    var glyphs = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&/<>[]{}';
-    var final = 'ERICK CÔNSOLO';
-    var t0 = performance.now(), dur = 900, done = false;
-    var kill = function () {
-      if (done) return;
-      done = true;
-      boot.style.transition = 'opacity .55s ease, transform .55s ease';
-      boot.style.opacity = '0';
-      boot.style.transform = 'scale(1.06)';
-      setTimeout(function () { boot.remove(); }, 600);
-    };
-    var tick = function (now) {
-      if (done) return;
-      var pr = Math.min(1, (now - t0) / dur);
-      var rev = pr * final.length, s = '';
-      for (var i = 0; i < final.length; i++) {
-        if (final[i] === ' ') s += ' ';
-        else if (i < rev - 0.5) s += final[i];
-        else s += glyphs[(Math.random() * glyphs.length) | 0];
-      }
-      nameEl.textContent = s;
-      bar.style.width = (pr * 100).toFixed(0) + '%';
-      sub.textContent = pr < 0.4 ? 'INITIALIZING' : pr < 0.8 ? 'LOADING MODULES' : 'READY';
-      if (pr < 1) requestAnimationFrame(tick);
-      else { nameEl.textContent = final; setTimeout(kill, 380); }
-    };
-    requestAnimationFrame(tick);
-    boot.addEventListener('click', kill);
-    var t = setTimeout(kill, 2600);
-    this._timers.push(t);
-    this._cleanup.push(kill);
-  }
-
-  // ---------- giant ghost year on work hover ----------
-  initGhostYear() {
-    if (this._reduce || !window.matchMedia('(pointer: fine)').matches) return;
-    var ghost = document.getElementById('ghost-year');
-    var work = document.getElementById('work');
-    if (!ghost || !work) return;
-    var current = null;
-    var onMove = function (e) {
-      var row = e.target && e.target.closest ? e.target.closest('[data-wipe]') : null;
-      if (row && work.contains(row)) {
-        if (row !== current) {
-          current = row;
-          var cell = row.firstElementChild;
-          var year = (cell ? cell.textContent : '').replace(/[^0-9]/g, ' ').trim().slice(0, 4);
-          ghost.textContent = year;
-        }
-        ghost.style.opacity = '0.5';
-        ghost.style.transform = 'translate(' + (e.clientX + 30) + 'px,' + (e.clientY - 110) + 'px)';
-      } else {
-        current = null;
-        ghost.style.opacity = '0';
-      }
-    };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    this._cleanup.push(function () { window.removeEventListener('mousemove', onMove); });
-  }
-
-  // ---------- party mode (triple-click no logo EC) ----------
-  initParty() {
-    if (this._reduce) return;
-    var self = this;
-    var logo = document.getElementById('ec-logo');
-    if (!logo) return;
-    var clicks = 0, timer = null, partying = false;
-    var onClick = function () {
-      clicks++;
-      clearTimeout(timer);
-      timer = setTimeout(function () { clicks = 0; }, 500);
-      if (clicks < 3 || partying) return;
-      clicks = 0; partying = true;
-      var root = self._root;
-      var start = performance.now();
-      var iv = setInterval(function () {
-        var t = (performance.now() - start) / 1000;
-        var hue = (t * 140) % 360;
-        root.style.setProperty('--accent', 'oklch(0.78 0.19 ' + hue.toFixed(0) + ')');
-        root.style.filter = 'hue-rotate(' + (Math.sin(t * 6) * 14).toFixed(0) + 'deg)';
-        if (t > 5) {
-          clearInterval(iv);
-          root.style.filter = '';
-          self.applyProps();
-          partying = false;
-        }
-      }, 50);
-      self._timers.push(iv);
-    };
-    logo.addEventListener('click', onClick);
-    this._cleanup.push(function () { logo.removeEventListener('click', onClick); });
-  }
-
-  // ---------- matrix screensaver on idle ----------
-  initMatrix() {
-    if (this._reduce) return;
-    var self = this;
-    var c = document.getElementById('mrain');
-    if (!c || !c.getContext) return;
-    var ctx = c.getContext('2d');
-    var active = false, raf = 0, idleTimer = null, cols = [], fs = 16, dpr = 1;
-    var glyphs = 'アイウエオカキクケコサシスセソ0123456789ABCDEF<>[]{}#%&';
-    var build = function () {
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      c.width = Math.round(window.innerWidth * dpr);
-      c.height = Math.round(window.innerHeight * dpr);
-      var n = Math.ceil(c.width / (fs * dpr));
-      cols = [];
-      for (var i = 0; i < n; i++) cols.push(Math.random() * -60);
-    };
-    var draw = function () {
-      raf = requestAnimationFrame(draw);
-      ctx.fillStyle = 'rgba(7,7,8,0.09)';
-      ctx.fillRect(0, 0, c.width, c.height);
-      ctx.font = (fs * dpr) + 'px monospace';
-      for (var i = 0; i < cols.length; i++) {
-        var ch = glyphs[(Math.random() * glyphs.length) | 0];
-        ctx.fillStyle = Math.random() > 0.975 ? '#fff' : self._accent;
-        ctx.fillText(ch, i * fs * dpr, cols[i] * fs * dpr);
-        if (cols[i] * fs * dpr > c.height && Math.random() > 0.975) cols[i] = 0;
-        cols[i] += 0.5 + Math.random() * 0.4;
-      }
-    };
-    var start = function () {
-      if (active) return;
-      active = true;
-      build();
-      ctx.fillStyle = '#070708';
-      ctx.fillRect(0, 0, c.width, c.height);
-      c.style.opacity = '0.92';
-      draw();
-    };
-    var stop = function () {
-      if (active) {
-        active = false;
-        c.style.opacity = '0';
-        cancelAnimationFrame(raf);
-      }
-      clearTimeout(idleTimer);
-      idleTimer = setTimeout(start, 45000);
-    };
-    var evs = ['mousemove', 'scroll', 'keydown', 'click', 'touchstart'];
-    evs.forEach(function (ev) { window.addEventListener(ev, stop, { passive: true }); });
-    stop();
-    this._cleanup.push(function () {
-      cancelAnimationFrame(raf);
-      clearTimeout(idleTimer);
-      evs.forEach(function (ev) { window.removeEventListener(ev, stop); });
-    });
-  }
-
-  renderVals() { return {}; }
-}
-(function () {
-  var app = new Component();
-  var boot = function () { app.componentDidMount(); };
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-  else boot();
 })();
 </script>
 </body>
