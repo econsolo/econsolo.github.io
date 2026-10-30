@@ -104,10 +104,31 @@
   }
   @media print {
     html, body { overflow: visible !important; height: auto !important; background: #fff !important; }
-    @page { margin: 14mm; }
+    :root { color-scheme: light !important; }
+    @page { size: A4; margin: 10mm 14mm; }
     #app { display: none !important; }
     #print-cv { display: block !important; }
   }
+  #print-cv { background: #fff; color: #1a1a1a; font-family: 'Archivo', Arial, sans-serif; font-size: 9.5pt; line-height: 1.33; max-width: 760px; margin: 0 auto; }
+  #print-cv header { border-bottom: 2px solid #1a1a1a; padding-bottom: 8px; margin-bottom: 10px; }
+  #print-cv h1 { margin: 0; font-size: 22pt; line-height: 1.1; letter-spacing: -0.02em; }
+  #print-cv .pc-role { font-size: 11pt; color: #333; margin-top: 2px; }
+  #print-cv .pc-contact { font-size: 8.5pt; color: #444; margin-top: 5px; display: flex; flex-wrap: wrap; gap: 2px 8px; font-family: 'IBM Plex Mono', monospace; }
+  #print-cv .pc-summary { margin: 0 0 4px; }
+  #print-cv h2 { font-size: 8.5pt; letter-spacing: 1.5px; text-transform: uppercase; color: #8a6a3e; font-family: 'IBM Plex Mono', monospace; margin: 10px 0 5px; border-bottom: 1px solid #ddd; padding-bottom: 3px; }
+  #print-cv .pc-job { margin-bottom: 7px; break-inside: avoid; }
+  #print-cv .pc-head, #print-cv .pc-sub { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  #print-cv .pc-head strong { font-size: 10pt; }
+  #print-cv .pc-head span, #print-cv .pc-sub span:last-child { font-size: 8.5pt; color: #666; white-space: nowrap; font-family: 'IBM Plex Mono', monospace; }
+  #print-cv .pc-sub { padding-left: 10px; border-left: 2px solid #ddd; margin: 2px 0; }
+  #print-cv .pc-sub span:first-child { font-weight: 600; }
+  #print-cv ul { padding-left: 15px; margin: 3px 0 0; }
+  #print-cv li { margin-bottom: 1px; }
+  #print-cv .pc-skills p { margin: 0 0 2px; }
+  #print-cv .pc-cols { display: flex; gap: 24px; }
+  #print-cv .pc-cols > div { flex: 1; }
+  #print-cv .pc-entry { margin-bottom: 4px; }
+  #print-cv .pc-entry div { color: #555; }
 </style>
 <noscript>
 <style>
@@ -235,7 +256,7 @@
             <div data-en="CORE STACK" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1px; color: var(--dim); margin-top: 4px;">NÚCLEO DO STACK</div>
           </div>
           <div>
-            <div style="font-size: clamp(28px, 3.2vw, 42px); font-weight: 650; letter-spacing: -0.03em;">5</div>
+            <div style="font-size: clamp(28px, 3.2vw, 42px); font-weight: 650; letter-spacing: -0.03em;">4</div>
             <div data-en="COMPANIES" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1px; color: var(--dim); margin-top: 4px;">EMPRESAS</div>
           </div>
           <div>
@@ -270,9 +291,9 @@
         </div>
       </div>
       <div>
-        <h2 data-d="1" data-en="System Specialist" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Especialista de Sistemas</h2>
+        <h2 data-d="1" data-en="Systems Specialist" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Especialista de Sistemas</h2>
         <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">Casas Bahia Tecnologia</div>
-        <p data-d="3" data-en="High-availability services for one of Brazil's largest e-commerce platforms — orders, payments and partner integrations — on distributed, event-driven architectures using messaging, caching and cloud-native observability built for peak demand." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Serviços de alta disponibilidade para uma das maiores plataformas de e-commerce do Brasil — pedidos, pagamentos e integrações com parceiros — sobre arquiteturas distribuídas e event-driven, com mensageria, caching e observabilidade cloud-native prontas para picos de demanda.</p>
+        <p data-d="3" data-en="High-availability C# / .NET services for one of Brazil's largest e-commerce platforms — critical transactional flows such as orders, payments and partner integrations — on distributed, event-driven architectures using messaging, caching and cloud-native observability built for high volume and peak demand." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Serviços de alta disponibilidade em C# / .NET para uma das maiores plataformas de e-commerce do Brasil — fluxos transacionais críticos como pedidos, pagamentos e integrações com parceiros — sobre arquiteturas distribuídas e event-driven, com mensageria, caching e observabilidade cloud-native prontas para alto volume e picos de demanda.</p>
         <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
           <span style="padding: 5px 10px; border: 1px solid var(--line);">.NET</span>
           <span style="padding: 5px 10px; border: 1px solid var(--line);">DISTRIBUTED SYSTEMS</span>
@@ -296,7 +317,7 @@
       <div>
         <h2 data-d="1" data-en="Senior Software Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor Sênior</h2>
         <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">5by5 · Soluções em Sistemas</div>
-        <p data-d="3" data-en="Designed and maintained high-availability APIs and microservices in .NET Core for enterprise clients — cloud-native, event-driven, container-orchestrated, with automated testing and clean-code practices." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Projetei e mantive APIs e microsserviços de alta disponibilidade em .NET Core para clientes enterprise — cloud-native, event-driven, orquestrados em containers, com testes automatizados e práticas de clean code.</p>
+        <p data-d="3" data-en="Designed and maintained high-availability APIs and microservices in .NET Core for enterprise clients — event-driven with Azure Service Bus, RabbitMQ and Amazon SQS, Redis caching, Docker and Kubernetes, observability with Application Insights, automated testing and clean code." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Projetei e mantive APIs e microsserviços de alta disponibilidade em .NET Core para clientes enterprise — event-driven com Azure Service Bus, RabbitMQ e Amazon SQS, cache com Redis, Docker e Kubernetes, observabilidade com Application Insights, testes automatizados e clean code.</p>
         <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
           <span style="padding: 5px 10px; border: 1px solid var(--line);">C# / .NET CORE</span>
           <span style="padding: 5px 10px; border: 1px solid var(--line);">KUBERNETES</span>
@@ -318,9 +339,9 @@
         </div>
       </div>
       <div>
-        <h2 data-d="1" data-en="Software Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor de Software</h2>
+        <h2 data-d="1" data-en="Mid-level Software Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor Pleno</h2>
         <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">5by5 · Soluções em Sistemas</div>
-        <p data-d="3" data-en="Backend development of scalable, distributed services within the .NET Core ecosystem, contributing to agile delivery for enterprise-level products." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Desenvolvimento backend de serviços escaláveis e distribuídos no ecossistema .NET Core, contribuindo com entregas ágeis para produtos enterprise.</p>
+        <p data-d="3" data-en="Scalable, distributed backend services in .NET Core for enterprise clients in a consulting environment, on agile Scrum/Kanban teams with a DevOps culture — promoted to Senior within 11 months." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Serviços backend escaláveis e distribuídos em .NET Core para clientes enterprise, em ambiente de consultoria, com times ágeis (Scrum/Kanban) e cultura DevOps — promovido a Sênior em 11 meses.</p>
         <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
           <span style="padding: 5px 10px; border: 1px solid var(--line);">.NET CORE</span>
           <span style="padding: 5px 10px; border: 1px solid var(--line);">MICROSERVICES</span>
@@ -343,7 +364,7 @@
       <div>
         <h2 data-d="1" data-en="Full Stack Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor Full Stack</h2>
         <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">Simples</div>
-        <p data-d="3" data-en="Owned the full delivery lifecycle in a small, fast-paced team — from requirements with stakeholders to deployment and production support — across C#/.NET, Java, Node, Angular, Vue and Flutter." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Dono do ciclo completo de entrega em um time pequeno e veloz — do levantamento com stakeholders ao deploy e suporte em produção — com C#/.NET, Java, Node, Angular, Vue e Flutter.</p>
+        <p data-d="3" data-en="Owned the full delivery lifecycle in a small, fast-paced team — from client requirements to system design, deployment, monitoring and post-release support — across C#/.NET, Java (Spring), Python, Node, Angular, Vue, Android and Flutter." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Dono do ciclo completo de entrega em um time pequeno e veloz — do levantamento com clientes ao design, deploy, monitoramento e suporte pós-release — com C#/.NET, Java (Spring), Python, Node, Angular, Vue, Android e Flutter.</p>
         <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
           <span style="padding: 5px 10px; border: 1px solid var(--line);">FULL STACK</span>
           <span style="padding: 5px 10px; border: 1px solid var(--line);">JAVA · NODE</span>
@@ -364,9 +385,9 @@
         </div>
       </div>
       <div>
-        <h2 data-d="1" data-en="C# Developer" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor C#</h2>
+        <h2 data-d="1" data-en="C# Developer · Training Program" style="margin: 0; font-size: clamp(30px, 5vw, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; opacity: 0;">Desenvolvedor C# · Formação</h2>
         <div data-d="2" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.5px; color: var(--accent); margin-top: 14px; opacity: 0;">CAST</div>
-        <p data-d="3" data-en="Selected for a 20-student cohort in an intensive C# and software-fundamentals program — OOP, software logic and hands-on project preparation." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Selecionado para uma turma de 20 alunos em um programa intensivo de C# e fundamentos de software — POO, lógica e preparação prática de projetos.</p>
+        <p data-d="3" data-en="Selected for a 20-student cohort in an intensive 4-month program — C#, object-oriented programming and programming fundamentals, with hands-on preparation for real projects." style="margin: 18px 0 0; max-width: 620px; font-size: clamp(14.5px, 1.6vw, 17px); font-weight: 300; line-height: 1.65; color: var(--muted); text-wrap: pretty; opacity: 0;">Selecionado para uma turma de 20 alunos em um programa intensivo de 4 meses — C#, orientação a objetos e lógica de programação, com preparação prática para projetos reais.</p>
         <div data-d="4" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.5px; color: var(--muted); opacity: 0;">
           <span style="padding: 5px 10px; border: 1px solid var(--line);">C#</span>
           <span style="padding: 5px 10px; border: 1px solid var(--line);">OOP</span>
@@ -394,7 +415,7 @@
         </div>
         <div>
           <div data-en="DATA" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; color: var(--dim); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line);">DADOS</div>
-          <div style="display: flex; flex-direction: column; gap: 9px; font-size: clamp(14px, 1.5vw, 16px); font-weight: 300; color: #cfcec7;"><span>SQL Server</span><span>MongoDB</span><span>Cosmos DB</span><span>PostgreSQL</span><span>Redis</span></div>
+          <div style="display: flex; flex-direction: column; gap: 9px; font-size: clamp(14px, 1.5vw, 16px); font-weight: 300; color: #cfcec7;"><span>SQL Server</span><span>MongoDB</span><span>Cosmos DB</span><span>PostgreSQL · MySQL</span><span>Redis</span></div>
         </div>
         <div>
           <div data-en="INFRA · PROTOCOLS" style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; color: var(--dim); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line);">INFRA · PROTOCOLOS</div>
@@ -461,52 +482,78 @@
 </div>
 
 <!-- ============ PRINT-ONLY CV ============ -->
-<div id="print-cv" style="display: none; background: #fff; color: #1a1a1a; font-family: 'Archivo', Arial, sans-serif; max-width: 760px; margin: 0 auto; line-height: 1.5;">
-  <header style="border-bottom: 2px solid #1a1a1a; padding-bottom: 14px; margin-bottom: 18px;">
-    <h1 style="margin: 0; font-size: 30px; letter-spacing: -0.02em;">Erick Cônsolo</h1>
-    <div data-en="Backend Software Engineer" style="font-size: 13px; color: #555; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px;">Engenheiro de Software Backend</div>
-    <div style="font-size: 11.5px; color: #333; margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 12px; font-family: 'IBM Plex Mono', monospace;">
-      <span>erickconsolo2706@gmail.com</span><span>·</span><span>Matão, São Paulo — Brasil</span><span>·</span><span>github.com/econsolo</span><span>·</span><span>linkedin.com/in/econsolo</span>
+<div id="print-cv" style="display: none;">
+  <header>
+    <h1>Erick Cônsolo</h1>
+    <div class="pc-role" data-en="Backend Software Engineer | C# / .NET">Engenheiro de Software Backend | C# / .NET</div>
+    <div class="pc-contact">
+      <span data-en="Matão, SP, Brazil">Matão, SP, Brasil</span><span>·</span><span>erickconsolo2706@gmail.com</span><span>·</span><span>linkedin.com/in/econsolo</span><span>·</span><span>github.com/econsolo</span><span>·</span><span>econsolo.github.io</span>
     </div>
   </header>
-  <p data-en="Backend engineer with 10+ years building reliable, scalable systems across the .NET ecosystem — from full-stack delivery in small, fast teams to distributed, event-driven services for enterprise-scale e-commerce under peak load." style="font-size: 13px; margin: 0 0 20px; color: #222;">Engenheiro backend com 10+ anos construindo sistemas confiáveis e escaláveis no ecossistema .NET — do full-stack em times pequenos e rápidos a serviços distribuídos e event-driven para e-commerce em escala enterprise sob pico de carga.</p>
+  <p class="pc-summary" data-en="Backend engineer with 10+ years of experience, specializing in high-availability systems and scalable cloud architectures in the .NET ecosystem. Experienced in distributed services, event-driven architecture, messaging platforms, and container orchestration, currently working on a large-scale e-commerce platform.">Engenheiro backend com mais de 10 anos de experiência, especializado em sistemas de alta disponibilidade e arquiteturas cloud escaláveis no ecossistema .NET. Experiência com serviços distribuídos, arquiteturas orientadas a eventos, mensageria e orquestração de containers, atuando hoje em uma plataforma de e-commerce de larga escala.</p>
 
-  <section style="margin-bottom: 18px;">
-    <h2 data-en="Experience" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Experiência</h2>
-    <div style="margin-bottom: 11px;">
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="System Specialist — Casas Bahia Tecnologia" style="font-size: 14px;">Especialista de Sistemas — Casas Bahia Tecnologia</strong><span data-en="2022 — Now" style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2022 — Agora</span></div>
-      <div data-en="High-availability services for large-scale e-commerce — orders, payments, partner integrations — within distributed, event-driven architectures using messaging, caching and cloud-native observability for peak demand." style="font-size: 12.5px; color: #444; margin-top: 3px;">Serviços de alta disponibilidade para e-commerce em larga escala — pedidos, pagamentos, integrações com parceiros — em arquiteturas distribuídas e event-driven com mensageria, caching e observabilidade cloud-native para picos de demanda.</div>
-    </div>
-    <div style="margin-bottom: 11px;">
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="Senior Software Developer — 5by5" style="font-size: 14px;">Desenvolvedor Sênior — 5by5</strong><span style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2020 — 2022</span></div>
-      <div data-en="Designed and maintained high-availability APIs and microservices in .NET Core for enterprise clients — cloud-native, container-orchestrated, with automated testing and clean-code practices." style="font-size: 12.5px; color: #444; margin-top: 3px;">Projetei e mantive APIs e microsserviços de alta disponibilidade em .NET Core para clientes enterprise — cloud-native, orquestrados em containers, com testes automatizados e clean code.</div>
-    </div>
-    <div style="margin-bottom: 11px;">
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="Software Developer — 5by5" style="font-size: 14px;">Desenvolvedor de Software — 5by5</strong><span style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2019 — 2020</span></div>
-      <div data-en="Backend development of scalable, distributed services within the .NET Core ecosystem, contributing to agile delivery for enterprise products." style="font-size: 12.5px; color: #444; margin-top: 3px;">Desenvolvimento backend de serviços escaláveis e distribuídos no ecossistema .NET Core, com entregas ágeis para produtos enterprise.</div>
-    </div>
-    <div style="margin-bottom: 11px;">
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="Full Stack Developer — Simples" style="font-size: 14px;">Desenvolvedor Full Stack — Simples</strong><span style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2015 — 2019</span></div>
-      <div data-en="Owned the full delivery lifecycle in a small, fast-paced team — from requirements to deployment and production support — across C#/.NET, Java, Node, Angular, Vue and Flutter." style="font-size: 12.5px; color: #444; margin-top: 3px;">Ciclo completo de entrega em um time pequeno e veloz — do levantamento ao deploy e suporte em produção — com C#/.NET, Java, Node, Angular, Vue e Flutter.</div>
+  <h2 data-en="Experience">Experiência profissional</h2>
+
+  <div class="pc-job">
+    <div class="pc-head"><strong data-en="Systems Specialist — Casas Bahia Tecnologia">Especialista de Sistemas — Casas Bahia Tecnologia</strong><span data-en="Jul 2022 – Present · São Paulo, Brazil">jul 2022 – atual · São Paulo, SP</span></div>
+    <ul>
+      <li data-en="Build and evolve high-availability backend services in C# / .NET for the Casas Bahia e-commerce platform, one of the largest retailers in Brazil.">Desenvolvo e evoluo serviços backend de alta disponibilidade em C# / .NET para a plataforma de e-commerce da Casas Bahia, uma das maiores varejistas do Brasil.</li>
+      <li data-en="Design and support critical transactional workflows such as orders, payments, and integrations with external partners, ensuring performance, reliability, and scalability in production.">Projeto e sustento fluxos transacionais críticos, como pedidos, pagamentos e integrações com parceiros externos, com foco em performance, confiabilidade e escalabilidade em produção.</li>
+      <li data-en="Work within distributed, event-driven architectures, applying messaging, caching strategies, and cloud-native observability to support high-volume operations and peak demand.">Atuo em arquiteturas distribuídas e orientadas a eventos, aplicando mensageria, estratégias de cache e observabilidade cloud-native para suportar alto volume e picos de demanda.</li>
+    </ul>
+  </div>
+
+  <div class="pc-job">
+    <div class="pc-head"><strong>5by5 Soluções em Sistemas</strong><span data-en="May 2019 – Jul 2022 · Araraquara, Brazil">mai 2019 – jul 2022 · Araraquara, SP</span></div>
+    <div class="pc-sub"><span data-en="Senior Software Developer">Desenvolvedor de Software Sênior</span><span data-en="Apr 2020 – Jul 2022">abr 2020 – jul 2022</span></div>
+    <div class="pc-sub"><span data-en="Mid-level Software Developer">Desenvolvedor de Software Pleno</span><span data-en="May 2019 – Mar 2020">mai 2019 – mar 2020</span></div>
+    <ul>
+      <li data-en="Promoted from Mid-level to Senior within 11 months.">Promovido de Pleno a Sênior em 11 meses.</li>
+      <li data-en="Built scalable, distributed backend services in .NET Core for enterprise clients in a consulting environment.">Desenvolvi serviços backend escaláveis e distribuídos em .NET Core para clientes enterprise, em ambiente de consultoria.</li>
+      <li data-en="Designed and maintained high-availability APIs and microservices using cloud-native, event-driven architectures.">Projetei e mantive APIs e microsserviços de alta disponibilidade em arquiteturas cloud-native e orientadas a eventos.</li>
+      <li data-en="Messaging with Azure Service Bus, RabbitMQ, and Amazon SQS; distributed caching with Redis; data in Cosmos DB, MongoDB, and SQL Server.">Mensageria com Azure Service Bus, RabbitMQ e Amazon SQS; cache distribuído com Redis; dados em Cosmos DB, MongoDB e SQL Server.</li>
+      <li data-en="Containerization and orchestration with Docker and Kubernetes; REST, gRPC, and SOAP APIs; observability with Application Insights.">Containers e orquestração com Docker e Kubernetes; comunicação via REST, gRPC e SOAP; observabilidade com Application Insights.</li>
+      <li data-en="Agile teams (Scrum/Kanban) with a DevOps culture, clean code practices, and automated unit testing.">Times ágeis (Scrum/Kanban), com cultura DevOps, clean code e testes unitários automatizados.</li>
+    </ul>
+  </div>
+
+  <div class="pc-job">
+    <div class="pc-head"><strong data-en="Full Stack Developer — Simples">Desenvolvedor Full Stack — Simples</strong><span data-en="Oct 2015 – May 2019 · Araraquara, Brazil">out 2015 – mai 2019 · Araraquara, SP</span></div>
+    <ul>
+      <li data-en="Worked across the full delivery lifecycle in a small, fast-paced team, from client requirements gathering to deployment, production monitoring, and post-release support.">Atuei em todo o ciclo de entrega em um time pequeno: do levantamento de requisitos com clientes ao deploy, monitoramento e suporte pós-release.</li>
+      <li data-en="Translated business needs into technical solutions, taking part in system design, development, and infrastructure setup.">Traduzi necessidades de negócio em soluções técnicas, participando de design de sistemas, desenvolvimento e configuração de infraestrutura.</li>
+      <li data-en="Backend with C# / .NET, Java (Spring, JSF, Wicket), Python, and Node.js; web with Angular, AngularJS, Vue.js, and jQuery; mobile with Android (Java) and Flutter; databases including SQL Server, MongoDB, MySQL, and PostgreSQL.">Backend com C# / .NET, Java (Spring, JSF, Wicket), Python e Node.js; web com Angular, AngularJS, Vue.js e jQuery; mobile com Android (Java) e Flutter; bancos SQL Server, MongoDB, MySQL e PostgreSQL.</li>
+    </ul>
+  </div>
+
+  <div class="pc-job">
+    <div class="pc-head"><strong data-en="C# Developer (Training Program) — CAST">Desenvolvedor C# (Programa de Formação) — CAST</strong><span data-en="Oct 2014 – Sep 2015 · Araraquara, Brazil">out 2014 – set 2015 · Araraquara, SP</span></div>
+    <ul>
+      <li data-en="Selected for a 20-student cohort in an intensive 4-month program covering C#, object-oriented programming, and programming fundamentals, with hands-on preparation for real projects.">Selecionado para uma turma de 20 alunos em um programa intensivo de 4 meses em C#, orientação a objetos e lógica de programação, com preparação prática para projetos reais.</li>
+    </ul>
+  </div>
+
+  <h2 data-en="Technical skills">Habilidades técnicas</h2>
+  <div class="pc-skills">
+    <p><strong data-en="Languages:">Linguagens:</strong> C#, .NET / .NET Core, Java, Python, Node.js, JavaScript</p>
+    <p><strong data-en="Architecture:">Arquitetura:</strong> <span data-en="Microservices, distributed systems, event-driven architecture, REST APIs, gRPC, SOAP">Microsserviços, sistemas distribuídos, arquitetura orientada a eventos, APIs REST, gRPC, SOAP</span></p>
+    <p><strong data-en="Messaging:">Mensageria:</strong> Azure Service Bus, RabbitMQ, Kafka, Amazon SQS</p>
+    <p><strong data-en="Data &amp; caching:">Dados e cache:</strong> SQL Server, PostgreSQL, MySQL, MongoDB, Cosmos DB, Redis</p>
+    <p><strong data-en="Cloud &amp; infrastructure:">Cloud e infraestrutura:</strong> Azure, Docker, Kubernetes, Application Insights</p>
+    <p><strong data-en="Practices:">Práticas:</strong> <span data-en="Scrum, Kanban, DevOps, clean code, automated unit testing, observability">Scrum, Kanban, DevOps, clean code, testes unitários automatizados, observabilidade</span></p>
+  </div>
+
+  <div class="pc-cols">
+    <div>
+      <h2 data-en="Education">Formação</h2>
+      <div class="pc-entry"><strong data-en="Associate's Degree in Systems Analysis and Development">Tecnólogo em Análise e Desenvolvimento de Sistemas</strong><div data-en="FATEC – São Paulo State College of Technology · 2014 – 2017">FATEC – Faculdade de Tecnologia do Estado de São Paulo · 2014 – 2017</div></div>
+      <div class="pc-entry"><strong data-en="Advanced English Program">Programa Avançado de Inglês</strong><div>Wizard by Pearson · 2010 – 2015</div></div>
     </div>
     <div>
-      <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline;"><strong data-en="C# Developer — CAST" style="font-size: 14px;">Desenvolvedor C# — CAST</strong><span style="font-size: 11px; color: #777; font-family: 'IBM Plex Mono', monospace; white-space: nowrap;">2014 — 2015</span></div>
-      <div data-en="Selected for a 20-student cohort in an intensive C# and software-fundamentals program — OOP, software logic and hands-on project preparation." style="font-size: 12.5px; color: #444; margin-top: 3px;">Selecionado para uma turma de 20 alunos em um programa intensivo de C# e fundamentos de software — POO, lógica e preparação prática de projetos.</div>
+      <h2 data-en="Languages">Idiomas</h2>
+      <div class="pc-entry" data-en="Portuguese: native">Português: nativo</div>
+      <div class="pc-entry" data-en="English: advanced">Inglês: avançado</div>
     </div>
-  </section>
-
-  <div style="display: flex; gap: 36px;">
-    <section style="flex: 1;">
-      <h2 style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Skills</h2>
-      <div style="font-size: 12.5px; color: #333; line-height: 1.7;"><strong data-en="Languages:">Linguagens:</strong> C#/.NET, Java, Python, Node.js, JavaScript<br><strong data-en="Messaging:">Mensageria:</strong> Azure Service Bus, RabbitMQ, Kafka, Amazon SQS<br><strong data-en="Data:">Dados:</strong> SQL Server, MongoDB, Cosmos DB, PostgreSQL, Redis<br><strong>Infra:</strong> Docker, Kubernetes, Azure, App Insights<br><strong data-en="Protocols:">Protocolos:</strong> REST, gRPC, SOAP</div>
-    </section>
-    <section style="flex: 1;">
-      <h2 data-en="Education" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 0 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Formação</h2>
-      <div style="margin-bottom: 10px;"><strong data-en="Systems Analysis &amp; Software Development" style="font-size: 13px;">Análise e Desenvolvimento de Sistemas</strong><div data-en="FATEC — São Paulo State College of Technology · 2014–2017" style="font-size: 12px; color: #555;">FATEC — Faculdade de Tecnologia do Estado de São Paulo · 2014–2017</div></div>
-      <div><strong data-en="Advanced English Program" style="font-size: 13px;">Programa Avançado de Inglês</strong><div style="font-size: 12px; color: #555;">Wizard by Pearson · 2010–2015</div></div>
-      <h2 data-en="Languages" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-family: 'IBM Plex Mono', monospace; margin: 16px 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Idiomas</h2>
-      <div data-en="Portuguese (native) · English (advanced)" style="font-size: 12.5px; color: #333;">Português (nativo) · Inglês (avançado)</div>
-    </section>
   </div>
 </div>
 
